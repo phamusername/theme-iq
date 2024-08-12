@@ -79,28 +79,12 @@
         }
         return $data;
     });
-    $phimbomoi = Cache::remember('site.movies.phimbomoi', setting('site_cache_ttl', 5 * 60), function () {
-        return Movie::where('type', 'series')
-            ->limit('12')
-            ->orderBy('updated_at', 'desc')
-            ->get();
-    });
-
-    $phimlemoi = Cache::remember('site.movies.phimlemoi', setting('site_cache_ttl', 5 * 60), function () {
-        return Movie::where('type', 'single')
-            ->limit('12')
-            ->orderBy('updated_at', 'desc')
-            ->get();
-    });
 
 @endphp
 
 @section('content')
-    <div class="row">
-        @include('themes::themeiq.inc.slider_recommended')
-        @include('themes::themeiq.inc.tabhome')
-        @foreach ($data as $item)
-            @include('themes::themeiq.inc.sections_movies')
-        @endforeach
-    </div>
+    @include('themes::themeiq.inc.slider_recommended')
+    @foreach ($data as $item)
+        @include('themes::themeiq.inc.sections_movies')
+    @endforeach
 @endsection

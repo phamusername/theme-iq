@@ -1,4 +1,4 @@
-<div class="myui-top-movies {{ $loop->even ? 'even' : 'odd' }}">
+{{-- <div class="myui-top-movies {{ $loop->even ? 'even' : 'odd' }}">
     <div class="myui-block-header">
         <h2 class="myui-block-title">{{ $item['label'] }}</h2>
         <a class="more text-muted icon-btn" href="{{ $item['link'] }}">
@@ -19,4 +19,27 @@
             @include('themes::themeiq.inc.sections_movies_item')
         @endforeach
     </ul>
+</div> --}}
+
+<div class="Main Container">
+    <div class="container">
+        <section class="firm-by-category">
+            <h2 class="title-category">{{ $item['label'] }}</h2>
+            <div class="slider__column splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        @foreach ($item['data'] as $key => $movie)
+                            @php
+                                $xClass = 'item';
+                                if ($key === 0 || $key % 4 === 0) {
+                                    $xClass .= ' no-margin-left';
+                                }
+                            @endphp
+                            @include('themes::themeiq.inc.sections_movies_item')
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
 </div>

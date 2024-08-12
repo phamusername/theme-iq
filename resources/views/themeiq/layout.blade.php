@@ -10,102 +10,28 @@
 @endphp
 
 @push('header')
-    {{-- @if (!(new \Jenssegers\Agent\Agent())->isDesktop())
-        <link rel="stylesheet" type="text/css" href="/themes/iq/css/ipad.css?v=1.0.5" />
-    @endif --}}
-
     <link href="{{ url('/') }}" rel="alternate" hreflang="vi">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- bootstrap -->
+    <link href="/themes/iq/plugins/bootstrap/css/bootstrap.min.css?ver=1.0.1" rel="stylesheet">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- splidejs -->
+    <link href="/themes/iq/css/splide.min.css?ver=1.0.1" rel="stylesheet">
+    <!-- css base -->
+    <link rel='stylesheet' href='/themes/iq/css/global-styles.css?ver=1.0.1' type='text/css'/>
+    <!-- Page style -->
+        <link rel='stylesheet' href='/themes/iq/css/dashboard/index.css?ver=1.0.1' type='text/css'/>
+    <link rel='stylesheet' href='/themes/iq/css/list.css?ver=1.0.1' type='text/css'/>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"
-        integrity="sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <link href="/themes/iq/static/css/main.css?v=5" rel="stylesheet" media="all">
-
-    <script>
-        function detectMob() {
-            const toMatch = [
-                /Android/i,
-                /webOS/i,
-                /iPhone/i,
-                /iPad/i,
-                /iPod/i,
-                /BlackBerry/i,
-                /Windows Phone/i
-            ];
-
-            return toMatch.some((toMatchItem) => {
-                return navigator.userAgent.match(toMatchItem);
-            });
-        }
-    </script>
-
-    <style>
-        #star i {
-            color: orange
-        }
-
-        .flickity-prev-next-button {
-            width: 40px;
-            height: 50px;
-        }
-
-        .flickity-prev-next-button svg {
-            vertical-align: middle !important;
-        }
-
-        @media all and (min-width: 813px) {
-
-            .m-nav,
-            .m-nav-over {
-                display: none !important;
-            }
-        }
-
-        @media screen and (max-width: 800px) {
-            .myui-header__logo .logo {
-                height: 50px !important;
-                width: 120px !important;
-                background-position: center center !important;
-            }
-        }
-
-        @if ($logo)
-            .myui-header__logo .logo {
-                background: url({{ $logo }}) no-repeat;
-                font-size: 1.5em;
-                color: #fff !important;
-                font-weight: 700;
-                background-size: contain;
-                display: block;
-                width: 229px;
-                height: 60px;
-                text-indent: -9999px;
-            }
-        @endif
-    </style>
 @endpush
 
 @section('body')
-    @include('themes::themeiq.inc.header')
-
-    <div class="container">
-        <div id="top_ads"></div>
-
-        @if (get_theme_option('ads_header'))
-            {!! get_theme_option('ads_header') !!}
-        @endif
-
-        <div class="row">
-            {{-- @yield('slider_recommended')
-            <div class="clear"></div> --}}
-
-            @yield('breadcrumb')
+    <div class="app">
+        {{-- @include('themes::themeiq.inc.header') --}}
+        <div class="main">
             @yield('content')
         </div>
-        @if (get_theme_option('ads_preload'))
-            {!! get_theme_option('ads_preload') !!}
-        @endif
     </div>
 @endsection
 
@@ -123,16 +49,32 @@
         </div>
     @endif
 
+    <script type="text/javascript" id='funciones_public_sol-js-extra'>
+        var toroflixPublic = {"url":"/","nonce":"7a0fde296e","trailer":"","noItemsAvailable":"No entries found","selectAll":"Select all","selectNone":"Select none","searchplaceholder":"Click here to search","loadingData":"Still loading data...","viewmore":"View more","id":"","type":"","report_text_reportForm":"Report Form","report_text_message":"Message","report_text_send":"SEND","report_text_has_send":"the report has been sent","playerAutomaticSlider":"1"};
+    </script>
+
     {!! get_theme_option('footer') !!}
+    <script src='/themes/iq/js/jquery.js?ver=3.0.0'></script>
+    <script src='/themes/iq/js/splide.min.js?ver=1.0.1'></script>
+    <script src='/themes/iq/plugins/bootstrap/js/bootstrap.bundle.min.js?ver=1.0.1'></script>
+    <script src='/themes/iq/js/functions.js?ver=1.0.1'></script>
+    <script src='/themes/iq/js/main.js?ver=1.0.1'></script>
+    <script type="text/javascript" id='funciones_public_sol-js-extra'>
+        var toroflixPublic = {"url":"/","nonce":"7a0fde296e","trailer":"","noItemsAvailable":"No entries found","selectAll":"Select all","selectNone":"Select none","searchplaceholder":"Click here to search","loadingData":"Still loading data...","viewmore":"View more","id":"","type":"","report_text_reportForm":"Report Form","report_text_message":"Message","report_text_send":"SEND","report_text_has_send":"the report has been sent","playerAutomaticSlider":"1"};
+    </script>
+    <!-- Page script -->
+        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="/themes/iq/js/config-splide.js?ver=1.0.1"></script>
 
-    <script src="/themes/iq/efc0d744/yii.js"></script>
-    <script src="/themes/iq/static/js/flickity.smart.min.js"></script>
-    <script src="/themes/iq/static/js/main.js?v=4"></script>
-    {{-- <script src="/themes/iq/js/ads_xx.js?v=7"></script> --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="/themes/iq/static/js/config-splide.js?ver=1.0.1"></script>
+    <script src='/themes/iq/static/js/jquery.js?ver=3.0.0'></script>
+    <script src='/themes/iq/static/js/splide.min.js?ver=1.0.1'></script>
+    <script src='https://dongphim.ink/themes/iqiyi/plugins/bootstrap/js/bootstrap.bundle.min.js?ver=1.0.1'></script>
+    <script src='https://dongphim.ink/themes/iqiyi/js/functions.js?ver=1.0.1'></script>
+    <script src='https://dongphim.ink/themes/iqiyi/js/main.js?ver=1.0.1'></script>
 
-    <div id="footer_fixed_ads"></div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script> --}}
     <div id="fb-root"></div>
 
     <script>
@@ -156,18 +98,6 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
-
-    <script>
-        $('body').on('click', '.nav-tabs li a', function() {
-            var tabactive = $(this).attr('href');
-            $(this).closest('.nav-tabs').find('li').removeClass('active');
-            $(this).parent().addClass('active');
-            $('body').find('.myui-panel_bd .tab-pane').removeClass('active');
-            $('body').find(tabactive).addClass('active');
-
-            return false;
-        });
-    </script><!--script src="https://api.flygame.io/sdk/widget/chill_tv.1856.js" async></script-->
 
     {!! setting('site_scripts_google_analytics') !!}
     <script>

@@ -109,7 +109,7 @@ class ThemeIqServiceProvider extends ServiceProvider
                         'name' => 'body_attributes',
                         'label' => 'Body attributes',
                         'type' => 'text',
-                        'value' => 'class="active"',
+                        'value' => 'id="Tf-Wp" class="home blog BdGradient"',
                         'tab' => 'Custom CSS'
                     ],
                     [

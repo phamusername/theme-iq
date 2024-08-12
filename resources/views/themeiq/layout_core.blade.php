@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ config('app.locale') }}" class="h-100">
+<html lang="{{ config('app.locale') }}">
 
 <head>
     {!! setting('site_meta_head_tags', '') !!}

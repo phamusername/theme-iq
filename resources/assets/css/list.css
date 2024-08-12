@@ -1,0 +1,310 @@
+.breadcrumb {
+    position: relative;
+    height: 25vh;
+}
+
+.title-category {
+    margin: 0 64px;
+    padding-top: 10px;
+}
+
+.wrap-breadcrumb .title-category,
+.Main.Container > .container > .firm-by-category > .title-category {
+    padding-top: 0;
+    margin-top: 5%;
+}
+
+.wrap-breadcrumb {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.list-item {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0px;
+    margin-right: 64px;
+    margin-left: 64px;
+    margin-bottom: 40px !important;
+}
+
+main:not([class~="categories.movies.index"]) .list-item {
+    margin-top: 0px;
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 40px !important;
+}
+
+.item-wrap {
+    width: calc((100% - 16 * 6px) / 6);
+    margin-bottom: 36px;
+    margin-right: 8px;
+    margin-left: 8px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.5s;
+}
+
+.item-wrap .item-link {
+    display: inline-block;
+    width: 100%;
+}
+
+.item-img {
+    position: relative;
+}
+
+.item-img .desc-img {
+    height: 450px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.item-img-layer {
+    background-image: linear-gradient(0deg, rgba(10, 12, 15, 0.8) 0%, rgba(10, 12, 15, 0.74) 4%, rgba(10, 12, 15, 0.59) 17%, rgba(10, 12, 15, 0.4) 34%, rgba(10, 12, 15, 0.21) 55%, rgba(10, 12, 15, 0.06) 78%, rgba(10, 12, 15, 0) 100%);
+    height: 60px;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 300;
+}
+
+.update-info-mask {
+    font-size: 12px;
+    color: rgb(255, 255, 255);
+    letter-spacing: 0px;
+    font-weight: 500;
+    position: absolute;
+    left: 8px;
+    right: 10px;
+    bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.text-box {
+    position: relative;
+    height: 40px;
+    margin: 10px 0px 0px;
+    font-size: 14px;
+    transition: color 0.3s ease 0s;
+}
+
+.item-title {
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.item-wrap:hover .item-title {
+    color: var(--main-color);
+}
+
+.item-wrap:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 1199px) {
+    .item-img .desc-img {
+        height: 200px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .breadcrumb {
+        position: relative;
+        height: 180px;
+    }
+
+    .item-img .desc-img {
+        height: 270px;
+    }
+
+    [class~="categories.movies.index"] .list-item {
+        margin-top: 30px;
+    }
+
+    .item-wrap {
+        width: calc((100% - 16 * 4px) / 4);
+        margin-bottom: 28px;
+    }
+
+    .text-box {
+        margin-top: 8px;
+    }
+
+    .list-item, .title-category {
+        margin-right: 56px;
+        margin-left: 56px;
+    }
+
+}
+
+@media (max-width: 991px) {
+    .item-img .desc-img {
+        height: 210px;
+    }
+}
+
+@media (max-width: 800px) {
+    .item-img .desc-img {
+        height: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .breadcrumb {
+        margin-bottom: -50px;
+    }
+
+    .title-category {
+        margin: 0 15px;
+        padding-top: 60px;
+        font-size: 22px;
+    }
+
+    .list-item {
+        margin-right: 15px;
+        margin-left: 15px;
+    }
+
+    .item-img .desc-img {
+        height: 260px;
+    }
+
+    [class~="categories.movies.index"] .list-item {
+        margin-top: 20px;
+    }
+
+    .item-wrap {
+        width: calc((100% - 8 * 3px) / 3);
+        margin-bottom: 24px;
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+}
+
+@media (max-width: 640px) {
+    .item-img .desc-img {
+        height: 240px;
+    }
+}
+
+@media (max-width: 585px) {
+    .item-img .desc-img {
+        height: 200px;
+    }
+}
+
+@media (max-width: 500px) {
+    .item-img .desc-img {
+        height: 190px;
+    }
+}
+
+@media (max-width: 480px) {
+    .item-img .desc-img {
+        height: 150px;
+    }
+}
+
+@media (max-width: 385px) {
+    .item-img .desc-img {
+        height: 130px;
+    }
+}
+
+.wp-pagenavi a, .wp-pagenavi span, .nav-links a, .nav-links span, .tagcloud a {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 5px 7px;
+    min-width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.wp-pagenavi a.first, .wp-pagenavi a.previouspostslink, .wp-pagenavi a.nextpostslink, .wp-pagenavi a.last, .prev.page-numbers, .next.page-numbers {
+    font-size: 0
+}
+
+.wp-pagenavi a.first:before, .wp-pagenavi a.previouspostslink:before, .wp-pagenavi a.nextpostslink:before, .wp-pagenavi a.last:before {
+    font-size: 1.25rem;
+    font-weight: 300
+}
+
+.wp-pagenavi a.previouspostslink:before, .wp-pagenavi a.nextpostslink:before, .prev.page-numbers:before, .next.page-numbers:before {
+    font-size: 1.5rem
+}
+
+.wp-pagenavi a.first:before {
+    content: '\e5c4'
+}
+
+.wp-pagenavi a.previouspostslink:before, .prev.page-numbers:before {
+    content: '\e314'
+}
+
+.wp-pagenavi a.nextpostslink:before, .next.page-numbers:before {
+    content: '\e315'
+}
+
+.wp-pagenavi a.last:before {
+    content: '\e5c8'
+}
+
+[class*=fa-]:before {
+    font-family: FontAwesome
+}
+
+.wp-pagenavi .current {
+    background-color: var(--main-color);
+    color: #fff;
+}
+
+.list-item.pagination {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.wp-pagenavi, .nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.wp-pagenavi .pages, .wp-pagenavi a.prev.page-numbers, .wp-pagenavi .next.page-numbers, .nav-links a {
+    color: var(--main-color);
+}
+
+.list-item.pagination a.page-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+[class*=fa-]:before {
+    display: inline-block;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: inherit;
+    line-height: inherit;
+    vertical-align: top;
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
+    word-wrap: normal
+}

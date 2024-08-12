@@ -20,176 +20,208 @@
 @endphp
 
 @section('content')
-    <div class="detail-bl myui-panel col-pd clearfix" itemscope="" itemtype="http://schema.org/Movie">
-        <div class="myui-content__thumb">
-            <a class="myui-vodlist__thumb img-md-220 img-sm-220 img-xs-130 picture" href="{{ $watchUrl }}"
-                title="{{ $currentMovie->name }} | {{ $currentMovie->origin_name }} ({{ $currentMovie->publish_year }})">
-                <img itemprop="image"
-                    alt="{{ $currentMovie->name }} | {{ $currentMovie->origin_name }} ({{ $currentMovie->publish_year }})"
-                    src="{{ $currentMovie->getThumbUrl() }}">
-                <span class="play hidden-xs"></span>
-                <span class="btn btn-default btn-block btn-watch">XEM PHIM</span>
-            </a>
-            <div class="clearfix"></div>
-        </div>
-        <div class="myui-content__detail">
-            <h1 class="title text-fff" itemprop="name">{{ $currentMovie->name }} </h1>
-            <h2 class="title2"> {{ $currentMovie->origin_name }} ({{ $currentMovie->publish_year }})</h2>
-            <div class="myui-media-info">
-                <div class="info-block">
-                    <div>Thể loại:
-                        <span>
-                            {!! $currentMovie->categories->map(function ($category) {
-                                    return '<a href="' . $category->getUrl() . '" tite="' . $category->name . '">' . $category->name . '</a>';
-                                })->implode(', ') !!}
+    <link rel='stylesheet' href='/themes/iq/css/details/index.css?ver=1.0.1' type='text/css' />
+    <section class="banner">
+        <div class="wrap-banner">
+            <div class="row">
+                <div class="col__left">
+                    <div class="banner-content">
+                        <div class="banner-content__title">
+                            <h1>{{ $currentMovie->name }}</h1>
+                        </div>
+                        <span class="banner-content__top">
+                            <div class="top">
+                                @if ($currentMovie->status == 'ongoing')
+                                    Đang chiếu
+                                @elseif ($currentMovie->status == 'completed')
+                                    Hoàn thành
+                                @else
+                                    Trailer
+                                @endif
+                            </div>
+                            {{ $currentMovie->origin_name }}
                         </span>
-                    </div>
-                    <div>Trạng thái:
-                        <span style="background: #d9534f; color: #fff; padding: 3px; border-radius: 3px; font-weight: 500;"
-                            itemprop="duration">{{ $currentMovie->episode_current }} {{ $currentMovie->language }}</span>
-                    </div>
-                    <div>Đạo diễn:
-                        <span itemprop="director">
-                            {!! count($currentMovie->directors)
-                                ? $currentMovie->directors->map(function ($director) {
-                                        return '<a href="' .
-                                            $director->getUrl() .
-                                            '" tite="Đạo diễn ' .
-                                            $director->name .
-                                            '"><span itemprop="director">' .
-                                            $director->name .
-                                            '</span></a>';
-                                    })->implode(', ')
-                                : 'Đoán xem' !!}
-                        </span>
-                    </div>
-                    <div>Diễn viên:
-                        <span itemprop="actor">
-                            {!! count($currentMovie->actors)
-                                ? $currentMovie->actors->map(function ($actor) {
-                                        return '<a href="' .
-                                            $actor->getUrl() .
-                                            '" tite="Diễn viên ' .
-                                            $actor->name .
-                                            '"><span itemprop="actor">' .
-                                            $actor->name .
-                                            '</span></a>';
-                                    })->implode(', ')
-                                : 'Không biết' !!}
-                        </span>
-                    </div>
-                </div>
-                @if ($currentMovie->showtimes && $currentMovie->showtimes != '')
-                    <div class="myui-player__notice">Lịch chiếu: {!! strip_tags($currentMovie->showtimes) !!}</div>
-                @endif
-                <div class="rating-block">
-                    @include('themes::themeiq.inc.rating2')
-                </div>
-            </div>
-        </div>
-        <div class="clearfix"></div>
-        <div class="myui-movie-detail">
-            <h3 class="title">Nội dung chi tiết</h3>
-            <div class="text-collapse content">
-                <div class="sketch content" itemprop="description">
-                    <p>{{ $currentMovie->name }} - {{ $currentMovie->origin_name }} ({{ $currentMovie->publish_year }})
-                    </p>
-                    <p>{!! $currentMovie->content !!}</p>
-                </div>
-                <div id="tags"><label>Keywords:</label>
-                    <div class="tag-list">
-                        @foreach ($currentMovie->tags as $tag)
-                            <h3>
-                                <strong>
-                                    <a href="{{ $tag->getUrl() }}" title="{{ $tag->name }}" rel='tag'>
-                                        {{ $tag->name }}
-                                    </a>
-                                </strong>
-                            </h3>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-        <meta itemprop="name"
-            content="{{ $currentMovie->name }} - {{ $currentMovie->origin_name }} ({{ $currentMovie->publish_year }})">
-        <meta itemprop="thumbnailUrl" content="{{ $currentMovie->getThumbUrl() }}">
-        <meta itemprop="image" content="{{ $currentMovie->getThumbUrl() }}">
-        <meta itemprop="uploadDate" content="{{ $currentMovie->updated_at }}">
-        <meta itemprop="url" content="{{ $currentMovie->getUrl() }}">
-        <meta itemprop="dateCreated" content="{{ $currentMovie->created_at }}">
-    </div>
-    <div class="row">
-        <div class="col-md-wide-7 col-xs-1 padding-0">
-            <div id="servers-container" class="myui-panel myui-panel-bg clearfix ">
-                <div class="myui-panel-box clearfix">
-                    <div class="myui-panel_hd">
-                        <div class="myui-panel__head active bottom-line clearfix">
-                            <div class="title">Tập phim</div>
-                            <ul class="nav nav-tabs active">
-                                @foreach ($currentMovie->episodes->sortBy([['server', 'asc']])->groupBy('server') as $server => $data)
-                                    <li class="{{ $loop->index == 0 ? 'active' : '' }}"><a
-                                            href="#tab_{{ $loop->index }}">{{ $server }}</a></li>
-                                @endforeach
-                            </ul>
+                        <div class="banner-content__infor">
+                            <div class="rate">
+                                <i class="fas fa-star"></i> {{ $currentMovie->getRatingStar() }}
+                            </div>
+                            <div class="year after-item">
+                                {{ $currentMovie->publish_year }}
+                            </div>
+                            <div class="week after-item">
+                                Cập nhật tới tập {{ $currentMovie->episode_current }}
+                            </div>
+                            <div class="episode_number after-item">
+                                Phim bộ
+                            </div>
+                        </div>
+                        <div class="focus-info-tag type"><a
+                                href="//www.iq.com/film-library?value=7128547076428233;must&amp;chnid=4"
+                                data-pb="block=library_channel&amp;rpage=album&amp;rseat=7128547076428233"><span
+                                    class="type-style">Trung Quốc đại lục</span></a><a
+                                href="//www.iq.com/film-library?value=3134563320729933;must&amp;chnid=4"
+                                data-pb="block=library_channel&amp;rpage=album&amp;rseat=3134563320729933"><span
+                                    class="type-style">Tiếng Phổ Thông</span></a><a
+                                href="//www.iq.com/film-library?value=1425950065128833;must&amp;chnid=4"
+                                data-pb="block=library_channel&amp;rpage=album&amp;rseat=1425950065128833"><span
+                                    class="type-style">Hài Hước</span></a><a
+                                href="//www.iq.com/film-library?value=3158628296160833;must&amp;chnid=4"
+                                data-pb="block=library_channel&amp;rpage=album&amp;rseat=3158628296160833"><span
+                                    class="type-style">Tình Yêu</span></a></div>
+                        <div class="focus-info-tag">
+                            <span class="key">Đạo diễn:</span>
+                            <span>
+                                {!! count($currentMovie->directors)
+                                    ? $currentMovie->directors->map(function ($director) {
+                                            return '<a href="' .
+                                                $director->getUrl() .
+                                                '" tite="Đạo diễn ' .
+                                                $director->name .
+                                                '">' .
+                                                $director->name .
+                                                '</a>';
+                                        })->implode(', ')
+                                    : 'Đang cập nhật' !!}
+                            </span>
+                        </div>
+                        <div class="focus-info-tag">
+                            <span class="key">Diễn viên:</span>
+                            <span>
+                                {!! count($currentMovie->actors)
+                                    ? $currentMovie->actors->map(function ($actor) {
+                                            return '<a href="' . $actor->getUrl() . '" tite="Đạo diễn ' . $actor->name . '">' . $actor->name . '</a>';
+                                        })->implode(', ')
+                                    : 'Đang cập nhật' !!}
+                            </span>
+                        </div>
+                        <div class="focus-info-tag">
+                            <span class="key">Thể loại:</span>
+                            <span>
+                                {!! $currentMovie->categories->map(function ($category) {
+                                        return '<a href="' . $category->getUrl() . '" tite="' . $category->name . '">' . $category->name . '</a>';
+                                    })->implode(', ') !!}
+                            </span>
+                        </div>
+                        <div class="banner-content__desc line-clamp-3">
+                            <span class="key"></span>
+                            {!! $currentMovie->content !!}
+                            <div class="more-info">
+                                <span class="text">Hiển thị thêm</span>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="group-btn">
+                            <a href="{{ $watchUrl }}" class="btn-item btn-play"
+                                title="Xem Phim {{ $currentMovie->name }}">
+                                <i class="fa-solid fa-play"></i>
+                                Xem Phim
+                            </a>
+                            <a href="javascript:void(0)" title="Chia sẻ lên facebook"
+                                onclick="window.open('http://www.facebook.com/sharer.php?u={{ $currentMovie->getUrl() }}', 'Facebook', 'toolbar=0, status=0, width=650, height=450');"
+                                class="btn-item btn-facebook">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+                            <a href="javascript:void(0)" title="Chia sẻ lên twitter"
+                                onclick="window.open('https://twitter.com/intent/tweet?original_referer={{ $currentMovie->getUrl() }}&amp;text={{ $currentMovie->name }}&amp;tw_p=tweetbutton&amp;url={{ $currentMovie->getUrl() }}', 'Twitter', 'toolbar=0, status=0, width=650, height=450');"
+                                class="btn-item btn-twitter">
+                                <i class="fa-brands fa-twitter"></i>
+                            </a>
                         </div>
                     </div>
-                    <div class="tab-content myui-panel_bd">
-                        @foreach ($currentMovie->episodes->sortBy([['server', 'asc']])->groupBy('server') as $server => $data)
-                            <div class="tab-pane fade in clearfix {{ $loop->index == 0 ? 'active' : '' }}"
-                                id="tab_{{ $loop->index }}">
-                                <ul class="myui-content__list sort-list clearfix"
-                                    style="max-height: 300px; overflow: auto;">
-                                    @foreach ($data->sortByDesc('name', SORT_NATURAL)->groupBy('name') as $name => $item)
-                                        <li class="col-lg-8 col-md-7 col-sm-6 col-xs-4">
-                                            <a href="{{ $item->sortByDesc('type')->first()->getUrl() }}"
-                                                class="btn btn-default"
-                                                title="{{ $name }}">{{ $name }}</a>
-                                        </li>
-                                    @endforeach
+                </div>
+                <div class="col__right">
+                    <div class="wrap-banner-img">
+                        <img src="{{ $currentMovie->getPosterUrl() }}" class="banner-img" alt="{{ $currentMovie->name }}">
+                        <div class="left-layer"></div>
+                        <div class="bottom-layer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="Main Container">
+        <div class="TpRwCont ">
+            <main class="movies.show">
+                <section class="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <ul class="nav nav-pills mb-3 tab-content-ul" id="pills-tab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="pills-propose-tab" data-bs-toggle="pill"
+                                                data-bs-target="#pills-propose" type="button" role="tab"
+                                                aria-controls="pills-propose" aria-selected="false">Đề xuất cho bạn
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="pills-firm-tab-1" data-bs-toggle="pill"
+                                            data-bs-target="#pills-firm-1" type="button" role="tab"
+                                            aria-controls="pills-firm-1" aria-selected="false">
+                                            Danh sách tập <span>Thuyết minh</span>
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="pills-firm-tab-2" data-bs-toggle="pill"
+                                            data-bs-target="#pills-firm-2" type="button" role="tab"
+                                            aria-controls="pills-firm-2" aria-selected="false">
+                                            Danh sách tập <span>Vietsub</span>
+                                        </button>
+                                    </li>
                                 </ul>
                             </div>
-                        @endforeach
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="myui-panel myui-panel-bg clearfix">
-                <div class="myui-panel-box clearfix">
-                    <div class="myui-panel__head active bottom-line clearfix">
-                        <h3 class="title">Có thể bạn sẽ thích</h3>
-                    </div>
-                    <ul id="type" class="myui-vodlist__bd clearfix">
-                        @foreach ($movie_related as $movie)
-                            <li class="col-lg-5 col-md-6 col-sm-4 col-xs-3">
-                                <div class="myui-vodlist__box">
-                                    <a class="myui-vodlist__thumb"
-                                        href="{{ $movie->getUrl() }}"
-                                        title="{{ $movie->name }} | {{ $movie->origin_name }} ({{ $movie->publish_year }})"
-                                        style="background: url({{ $movie->getThumbUrl() }});">
-                                        <span class="play hidden-xs"></span>
-                                        <span class="pic-tag pic-tag-top">{{ $movie->episode_current }} {{ $movie->language }}</span>
-                                    </a>
-                                    <div class="myui-vodlist__detail">
-                                        <h4 class="title text-overflow">
-                                            <a href="/phim-nu-hoang-nuoc-mat/12102.html" title="{{ $movie->name }} | {{ $movie->origin_name }} (2024)">{{ $movie->name }} </a>
-                                        </h4>
-                                        <p class="text text-overflow text-muted hidden-xs">
-                                            {{ $movie->origin_name }} (2024)
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-wide-3 col-xs-1 myui-sidebar hidden-sm hidden-xs">
-            @include('themes::thememotchill.sidebar')
+                </section>
+            </main>
         </div>
     </div>
+    <style>
+        .focus-info-tag {
+            margin-top: 10px;
+            color: rgb(255, 255, 255);
+            font-size: 16px;
+            letter-spacing: 0px;
+            line-height: 22px;
+            margin-bottom: 10px;
+        }
+
+        .focus-info-tag a:hover {
+            color: rgb(28, 199, 73);
+        }
+
+        .intl-album-more-btn {
+            color: rgb(28, 199, 73);
+            font-weight: 600;
+            text-decoration: none
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 1023px) {
+            .focus-info-tag {
+                font-size: 14px;
+                line-height: 16px;
+                margin-top: 8px;
+                margin-bottom: 8px;
+            }
+        }
+
+        .focus-info-tag .tag-inline {
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-bottom: 10px;
+        }
+
+        .focus-info-tag .key {
+            color: rgb(169, 169, 172);
+            font-size: 16px;
+        }
+    </style>
 @endsection
 
 @push('scripts')
+    <script src="/themes/iq/js/details.js?ver=1.0.1"></script>
     {!! setting('site_scripts_facebook_sdk') !!}
 @endpush
