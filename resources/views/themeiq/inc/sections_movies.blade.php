@@ -41,5 +41,6 @@
                 </div>
             </div>
         </section>
+        <div class="detail-pop-modal"></div>
     </div>
 </div>

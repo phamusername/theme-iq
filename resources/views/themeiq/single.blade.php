@@ -111,7 +111,7 @@
                             </div>
                         </div>
                         <div class="group-btn">
-                            <a href="{{ $watchUrl }}" class="btn-item btn-play"
+                            <a style="background-color: rgb(28, 199, 73)" href="{{ $watchUrl }}" class="btn-item btn-s"
                                 title="Xem Phim {{ $currentMovie->name }}">
                                 <i class="fa-solid fa-play"></i>
                                 Xem Phim
@@ -149,11 +149,21 @@
                                 <ul class="nav nav-pills mb-3 tab-content-ul" id="pills-tab" role="tablist">
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link active" id="pills-propose-tab" data-bs-toggle="pill"
-                                                data-bs-target="#pills-propose" type="button" role="tab"
-                                                aria-controls="pills-propose" aria-selected="false">Đề xuất cho bạn
+                                            data-bs-target="#pills-propose" type="button" role="tab"
+                                            aria-controls="pills-propose" aria-selected="false">Đề xuất cho bạn
                                         </button>
                                     </li>
-                                    <li class="nav-item" role="presentation">
+                                    @foreach ($currentMovie->episodes->sortBy([['server', 'asc']])->groupBy('server') as $server => $data)
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="pills-firm-tab-{{ $loop->index + 1 }}"
+                                                data-bs-toggle="pill" data-bs-target="#pills-firm-{{ $loop->index + 1 }}"
+                                                type="button" role="tab"
+                                                aria-controls="pills-firm-{{ $loop->index + 1 }}" aria-selected="false">
+                                                Danh sách tập <span>{{ $server }}</span>
+                                            </button>
+                                        </li>
+                                    @endforeach
+                                    {{-- <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="pills-firm-tab-1" data-bs-toggle="pill"
                                             data-bs-target="#pills-firm-1" type="button" role="tab"
                                             aria-controls="pills-firm-1" aria-selected="false">
@@ -166,8 +176,101 @@
                                             aria-controls="pills-firm-2" aria-selected="false">
                                             Danh sách tập <span>Vietsub</span>
                                         </button>
-                                    </li>
+                                    </li> --}}
                                 </ul>
+                                <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade show active" id="pills-propose" role="tabpanel"
+                                        aria-labelledby="pills-propose-tab">
+                                        <div class="firm-propose video-list-wrapper">
+                                            @foreach ($movie_related as $movie)
+                                                <a href="{{ $movie->getUrl() }}" class="video-item">
+                                                    <div class="video-item-img">
+                                                        <img src="{{ $movie->getThumbUrl() }}" alt=""
+                                                            class="desc-img">
+                                                        <div class="video-item-img-layer">
+                                                            <div class="update-info-mask">{{ $movie->episode_current }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="wrap " role="button" aria-label="play-button"
+                                                            tabindex="0" rseat="0"
+                                                            data-pb="block=album_information&amp;r=3513185601796900&amp;a=play&amp;rpage=album">
+                                                            <svg width="60px" height="60px" viewBox="0 0 60 60"
+                                                                version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                class="play-button">
+                                                                <g id="Btn/Play/Normal" stroke="none" stroke-width="1"
+                                                                    fill="none" fill-rule="evenodd">
+                                                                    <circle id="bg" fill="#1CC749" cx="30"
+                                                                        cy="30" r="30"></circle>
+                                                                    <path
+                                                                        d="M35.7461509,22.4942263 L45.1405996,36.5858994 C46.059657,37.9644855 45.6871354,39.8270935 44.3085493,40.7461509 C43.8157468,41.0746859 43.2367237,41.25 42.6444487,41.25 L23.8555513,41.25 C22.198697,41.25 20.8555513,39.9068542 20.8555513,38.25 C20.8555513,37.657725 21.0308654,37.078702 21.3594004,36.5858994 L30.7538491,22.4942263 C31.6729065,21.1156403 33.5355145,20.7431187 34.9141006,21.662176 C35.2436575,21.8818806 35.5264463,22.1646695 35.7461509,22.4942263 Z"
+                                                                        id="Triangle" fill="#FFFFFF"
+                                                                        transform="translate(33.250000, 30.000000) rotate(-270.000000) translate(-33.250000, -30.000000) ">
+                                                                    </path>
+                                                                </g>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div class="video-item-name">
+                                                        {{ $movie->name }}
+                                                    </div>
+                                                </a>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    @foreach ($currentMovie->episodes->sortBy([['server', 'asc']])->groupBy('server') as $server => $data)
+                                        <div class="tab-pane fade" id="pills-firm-{{ $loop->index + 1 }}"
+                                            role="tabpanel" aria-labelledby="pills-firm-tab-{{ $loop->index + 1 }}">
+                                            <div class="video-list-wrapper">
+                                                @foreach ($data->sortByDesc('name', SORT_NATURAL)->groupBy('name') as $name => $item)
+                                                    <a href="{{ $item->sortByDesc('type')->first()->getUrl() }}"
+                                                        class="video-item" title="Thế Giới Võ Hiệp: Kim Dung - Tập30">
+                                                        <div class="video-item-img">
+                                                            @php
+                                                                $ep_link = $item->sortByDesc('type')->first()->link;
+                                                                $ep_img = str_replace(
+                                                                    'index.m3u8',
+                                                                    '1.jpg',
+                                                                    $ep_link,
+                                                                    $check_replace,
+                                                                );
+                                                                if ($check_replace == 0) {
+                                                                    $ep_img = $currentMovie->getPosterUrl();
+                                                                }
+                                                            @endphp
+                                                            <img src="{{ $ep_img }}" alt=""
+                                                                class="desc-img">
+                                                            <div class="video-item-img-layer"></div>
+                                                            <div class="wrap " role="button" aria-label="play-button"
+                                                                tabindex="0" rseat="0"
+                                                                data-pb="block=album_information&amp;r=3513185601796900&amp;a=play&amp;rpage=album">
+                                                                <svg width="60px" height="60px" viewBox="0 0 60 60"
+                                                                    version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                    class="play-button">
+                                                                    <g id="Btn/Play/Normal" stroke="none"
+                                                                        stroke-width="1" fill="none"
+                                                                        fill-rule="evenodd">
+                                                                        <circle id="bg" fill="#1CC749"
+                                                                            cx="30" cy="30" r="30"></circle>
+                                                                        <path
+                                                                            d="M35.7461509,22.4942263 L45.1405996,36.5858994 C46.059657,37.9644855 45.6871354,39.8270935 44.3085493,40.7461509 C43.8157468,41.0746859 43.2367237,41.25 42.6444487,41.25 L23.8555513,41.25 C22.198697,41.25 20.8555513,39.9068542 20.8555513,38.25 C20.8555513,37.657725 21.0308654,37.078702 21.3594004,36.5858994 L30.7538491,22.4942263 C31.6729065,21.1156403 33.5355145,20.7431187 34.9141006,21.662176 C35.2436575,21.8818806 35.5264463,22.1646695 35.7461509,22.4942263 Z"
+                                                                            id="Triangle" fill="#FFFFFF"
+                                                                            transform="translate(33.250000, 30.000000) rotate(-270.000000) translate(-33.250000, -30.000000) ">
+                                                                        </path>
+                                                                    </g>
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                        <div class="video-item-name">
+                                                            {{ $currentMovie->name }} - Tập {{ $name }}
+                                                        </div>
+                                                    </a>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -222,6 +325,6 @@
 @endsection
 
 @push('scripts')
-    <script src="/themes/iq/js/details.js?ver=1.0.1"></script>
+
     {!! setting('site_scripts_facebook_sdk') !!}
 @endpush

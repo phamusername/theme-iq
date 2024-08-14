@@ -1,241 +1,162 @@
 @extends('themes::themeiq.layout')
-
 @section('content')
+    <div class="TPost A D">
+        <div class="Container">
+            <div class="optns-bx">
+                <div style="display: none" id="ploption" class="text-center">
+                    @foreach ($currentMovie->episodes->where('slug', $episode->slug)->where('server', $episode->server) as $server)
+                        <a onclick="chooseStreamingServer(this)" data-type="{{ $server->type }}" data-id="{{ $server->id }}"
+                            data-link="{{ $server->link }}" class="streaming-server current btn-sv btn btn-primary">
+                            Server #{{ $loop->iteration }}
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+            <div class="intl-play-container">
+                <div class="intl-play-left">
+                    <div class="VideoPlayer">
+                        <div id="player-loaded"></div>
+                    </div>
+                </div>
+                <div class="intl-play-right">
+                    <div class="MainContainer">
+                        <section class="SeasonBx AACrdn">
+                            <div class="Top AAIco-playlist_play AALink episodes-view episodes-load">
+                                <div class="Title"><a href="#">Danh sách tập <span>Vietsub</span></a></div>
+                            </div>
+                            <ul class="AZList">
+                                <li class=""><a
+                                        href="https://dongphim.ink/phim/thieu-nien-bach-ma-tuy-xuan-phong/tap-35"
+                                        title="35">35</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <style>
-        .video-footer {
-            margin-top: 5px;
-        }
+        .intl-play-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap; /* No wrapping on larger screens */
+}
 
-        .btn-active {
-            color: #fff !important;
-            background: #d9534f !important;
-            border-color: #d9534f !important;
-        }
+.intl-play-left {
+    flex: 1; /* Take available space */
+    margin-right: 10px; /* Space between left and right */
+}
 
-        .btn-sv {
-            margin-right: 5px;
-        }
+.intl-play-right {
+    flex: 1; /* Take available space */
+}
 
-        .btn-sv:last-child {
-            margin-right: 0;
-        }
+@media (max-width: 768px) {
+    .intl-play-container {
+        flex-direction: column; /* Stack on mobile */
+    }
 
-        #player-loaded>div {
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-        }
+    .intl-play-left,
+    .intl-play-right {
+        margin-right: 0; /* Remove right margin */
+        margin-bottom: 10px; /* Space between stacked elements */
+    }
+}
     </style>
-
-    <div class="video-p-first mt-3">
-        <div class="cc-warning text-center">
-            - Cách tìm kiếm phim trên Google: <b>"Tên phim + {{ request()->getHost() }}"</b><br>
-        </div>
-        @if ($currentMovie->showtimes && $currentMovie->showtimes != '')
-            <div class="myui-player__notice">Lịch chiếu: {!! strip_tags($currentMovie->showtimes) !!}</div>
-        @endif
-    </div>
-
-    <div id="main-player">
-        {{-- <div class="loader"></div> --}}
-        <div id="player-loaded"></div>
-    </div>
-    <div class="video-footer">
-        <script>
-            function detectMobile() {
-                const toMatch = [
-                    /Android/i,
-                    /webOS/i,
-                    /iPhone/i,
-                    /iPad/i,
-                    /iPod/i,
-                    /BlackBerry/i,
-                    /Windows Phone/i
-                ];
-
-                return toMatch.some((toMatchItem) => {
-                    return navigator.userAgent.match(toMatchItem);
-                });
-            }
-        </script>
-    </div>
-
-    <div id="ploption" class="text-center">
-        @foreach ($currentMovie->episodes->where('slug', $episode->slug)->where('server', $episode->server) as $server)
-            <a onclick="chooseStreamingServer(this)" data-type="{{ $server->type }}" data-id="{{ $server->id }}"
-                data-link="{{ $server->link }}" class="streaming-server current btn-sv btn btn-primary">
-                Server #{{ $loop->iteration }}
-            </a>
-        @endforeach
-    </div>
-
-    <div itemscope itemtype="http://schema.org/Movie">
-        <div class="rating-block text-center">
-            @include('themes::themeiq.inc.rating2')
-        </div>
-        <center style="padding:10px"><input type="text" id="searchBox" placeholder="Tìm tập phim..."
-                style="background: 0 0; border: 1px solid #fff; height: 32px; width: 200px; padding: 5px; color:#fff; border-radius: 3px !important">
-        </center>
-        <div class="row">
-            <div class="col-md-wide-7 col-xs-1 padding-0">
-                <div id="servers-container" class="myui-panel myui-panel-bg clearfix ">
-                    <div class="myui-panel-box clearfix">
-                        <div class="myui-panel_hd">
-                            <div class="myui-panel__head active bottom-line clearfix">
-                                <div class="title">Tập phim</div>
-                                <ul class="nav nav-tabs active">
-                                    @foreach ($currentMovie->episodes->sortBy([['server', 'asc']])->groupBy('server') as $server => $data)
-                                        <li class="{{ $loop->index == 0 ? 'active' : '' }}"><a
-                                                href="#tab_{{ $loop->index }}">{{ $server }}</a></li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="tab-content myui-panel_bd">
-                            @foreach ($currentMovie->episodes->sortBy([['server', 'asc']])->groupBy('server') as $server => $data)
-                                <div class="tab-pane fade in clearfix {{ $loop->index == 0 ? 'active' : '' }}"
-                                    id="tab_{{ $loop->index }}">
-                                    <ul class="myui-content__list sort-list clearfix"
-                                        style="max-height: 300px; overflow: auto;">
-                                        @foreach ($data->sortByDesc('name', SORT_NATURAL)->groupBy('name') as $name => $item)
-                                            <li class="col-lg-8 col-md-7 col-sm-6 col-xs-4">
-                                                <a href="{{ $item->sortByDesc('type')->first()->getUrl() }}"
-                                                    class="btn btn-default @if ($item->contains($episode)) active @endif"
-                                                    title="{{ $name }}">{{ $name }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-                <div style="border: 1px solid #b8b612; font-size: 15px" class="myui-panel myui-panel-bg clearfix">
-                    - Hãy thử chuyển sang server khác (nếu có) nếu bạn gặp tình trạng giật/lag khi xem phim.<br>
-                    - Bạn nên sử dụng Trình duyệt Chrome để xem phim tối ưu nhất!<br>
-                    - Tham gia nhóm <a href="https://t.me/+z49SfoKsTZ00OGRl" target="_blank" rel="nofollow noopener">
-                        <span style="color:#e62117"><strong>Telegram</strong></span></a> của chúng mình để được hỗ trợ kịp
-                    thời nha.
-                </div>
-                <div class="myui-panel myui-panel-bg clearfix">
-                    <div class="myui-panel-box clearfix">
-                        <div class="myui-panel_hd">
-                            <div class="myui-panel__head clearfix height-auto">
-                                <h1 class="title" itemprop="name">{{ $currentMovie->name }} - Tập {{ $episode->name }}
-                                </h1>
-                                <h2 class="title2">{{ $currentMovie->origin_name }}</h2>
-                            </div>
-                        </div>
-                        <div class="myui-panel_bd">
-                            <div class="col-pd text-collapse content">
-                                <div class="sketch content" itemprop="description">
-                                    <h3>{{ $currentMovie->name }}, {{ $currentMovie->origin_name }}</h3>
-                                    {!! $currentMovie->content !!}
-                                </div>
-                                <div id="tags"><label>Keywords:</label>
-                                    <div class="tag-list">
-                                        @foreach ($currentMovie->tags as $tag)
-                                            <h3>
-                                                <strong>
-                                                    <a href="{{ $tag->getUrl() }}" title="{{ $tag->name }}"
-                                                        rel='tag'>
-                                                        {{ $tag->name }}
-                                                    </a>
-                                                </strong>
-                                            </h3>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="myui-panel myui-panel-bg clearfix">
-                    <style>
-                        @media only screen and (max-width: 767px) {
-                            .fb-comments {
-                                width: 100% !important
-                            }
-
-                            .fb-comments iframe[style] {
-                                width: 100% !important
-                            }
-
-                            .fb-like-box {
-                                width: 100% !important
-                            }
-
-                            .fb-like-box iframe[style] {
-                                width: 100% !important
-                            }
-
-                            .fb-comments span {
-                                width: 100% !important
-                            }
-
-                            .fb-comments iframe span[style] {
-                                width: 100% !important
-                            }
-
-                            .fb-like-box span {
-                                width: 100% !important
-                            }
-
-                            .fb-like-box iframe span[style] {
-                                width: 100% !important
-                            }
-                        }
-
-                        .fb-comments,
-                        .fb-comments span {
-                            background-color: #eee
-                        }
-
-                        .fb-comments {
-                            margin-bottom: 20px
-                        }
-                    </style>
-                    <div style="color:white;font-weight:bold;padding:5px; border: 1px solid #dd163b">
-                        Quý khán giả tuyệt đối không được nhấn vào các đường link lạ trong phần bình luận để tránh trường hợp bị hack tài khoản Facebook, lộ lọt thông tin cá nhân!
-                    </div>
-                    <div data-order-by="reverse_time" id="commit-99011102" class="fb-comments"
-                        data-href="{{ $currentMovie->getUrl() }}" data-width="" data-numposts="10"></div>
-                    <script>
-                        document.getElementById("commit-99011102").dataset.width = $("#commit-99011102").parent().width();
-                    </script>
-                </div>
-            </div>
-
-            <div class="col-md-wide-3 col-xs-1 myui-sidebar hidden-sm hidden-xs">
-                @include('themes::themeiq.sidebar')
-            </div>
-        </div>
-    </div>
-
-    {{-- Load player --}}
-    <script>
-        $('.btn-sv').on('click', function() {
-            var __this = $(this);
-
-            __this.parent().find('a.btn').removeClass('btn-active');
-            __this.addClass('btn-active');
-        });
-
-        function removeAds(__this) {
-            __this.closest('.player_ads').hide();
-        }
-    </script>
 @endsection
 
 @push('scripts')
+    <script>
+        $(document).ready(function() {
+            const splideByCate = new Splide(".firm-propose .splide", {
+                // Optional parameters
+                start: 0,
+                perPage: 5,
+                perMove: 1,
+                gap: 14,
+                type: "slide",
+                drag: "free",
+                snap: true,
+                arrows: true,
+                lazyLoad: true,
+                pagination: false,
+
+                // Responsive breakpoint
+                breakpoints: {
+                    1679: {
+                        perPage: 6,
+
+                    },
+                    1480: {
+                        perPage: 5,
+
+                    },
+                    1200: {
+                        perPage: 4,
+
+                    },
+                    768: {
+                        perPage: 3,
+                    }
+                }
+            });
+
+            splideByCate.mount();
+
+            $('.list-top-firm .firm-item-link').hover(function() {
+                $('.list-top-firm .firm-item-link.active').removeClass('active');
+                $(this).addClass('active');
+            })
+
+            function swapEpisode() {
+                let windowWidth = $(window).width();
+                if (windowWidth <= 1024) {
+                    let episode = $('.watcher .episodes').html();
+                    $('.episodes-response').html(episode);
+                } else {
+                    let episode = $('.episodes-response').html();
+                    if (episode.trim().length !== 0) {
+                        $('.watcher .episodes').html(episode);
+                    }
+                }
+            }
+
+            swapEpisode();
+            $(window).on("resize", function() {
+                swapEpisode();
+            })
+
+            var hiddenElement = $(".BtnLight.AAIco-lightbulb_outline");
+
+            function hideElementF() {
+                hiddenElement.hide();
+            }
+
+            function showElementF() {
+                hiddenElement.show();
+            }
+
+            $(document).ready(function() {
+                setInterval(hideElementF, 5000); // Hide element every 5 seconds
+
+                $(document).on('click', function() {
+                    showElementF();
+                    clearTimeout(autoHideTimeout);
+                    autoHideTimeout = setTimeout(hideElementF, 5000);
+                });
+
+                var autoHideTimeout = setTimeout(hideElementF, 5000);
+            });
+        })
+        console.log('Design by: @gggforyou')
+    </script>
+    <link rel='stylesheet' href='/themes/iq/css/details/play2.css' type='text/css' />
+    <link rel='stylesheet' href='/themes/iq/css/demo.css' type='text/css' />
+    <script src="/themes/iq/js/details.js?ver=1.0.1"></script>
     <script src="/themes/iq/static/player/skin/juicycodes.js"></script>
     <link href="/themes/iq/static/player/skin/juicycodes.css" rel="stylesheet" type="text/css">
+    <link rel='stylesheet' href='/themes/iq/css/details/index.css?ver=1.0.1' type='text/css' />
 
     {{--    <script src="/themes/iq/static/player/js/p2p-media-loader-core.min.js"></script> --}}
     {{--    <script src="/themes/iq/static/player/js/p2p-media-loader-hlsjs.min.js"></script> --}}

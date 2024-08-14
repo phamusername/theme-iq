@@ -17,7 +17,7 @@ $(document).ready(function () {
                 perPage: 8,
                 perMove: 1,
                 gap: 14,
-                type: "loop",
+                type: "slide",
                 drag: "free",
                 snap: true,
                 arrows: true,

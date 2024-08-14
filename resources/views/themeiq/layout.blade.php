@@ -36,6 +36,7 @@
 @endsection
 
 @section('footer')
+    
     @if (get_theme_option('ads_catfish'))
         <div id="catfish" style="width: 100%;position:fixed;bottom:0;left:0;z-index:222" class="mp-adz">
             <div style="margin:0 auto;text-align: center;overflow: visible;" id="container-ads">
@@ -62,6 +63,7 @@
     <script type="text/javascript" id='funciones_public_sol-js-extra'>
         var toroflixPublic = {"url":"/","nonce":"7a0fde296e","trailer":"","noItemsAvailable":"No entries found","selectAll":"Select all","selectNone":"Select none","searchplaceholder":"Click here to search","loadingData":"Still loading data...","viewmore":"View more","id":"","type":"","report_text_reportForm":"Report Form","report_text_message":"Message","report_text_send":"SEND","report_text_has_send":"the report has been sent","playerAutomaticSlider":"1"};
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <!-- Page script -->
         <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script src="/themes/iq/js/config-splide.js?ver=1.0.1"></script>
