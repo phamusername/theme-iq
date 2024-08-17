@@ -55,19 +55,27 @@
                                 Phim bộ
                             </div>
                         </div>
-                        <div class="focus-info-tag type"><a
-                                href="//www.iq.com/film-library?value=7128547076428233;must&amp;chnid=4"
-                                data-pb="block=library_channel&amp;rpage=album&amp;rseat=7128547076428233"><span
-                                    class="type-style">Trung Quốc đại lục</span></a><a
-                                href="//www.iq.com/film-library?value=3134563320729933;must&amp;chnid=4"
-                                data-pb="block=library_channel&amp;rpage=album&amp;rseat=3134563320729933"><span
-                                    class="type-style">Tiếng Phổ Thông</span></a><a
-                                href="//www.iq.com/film-library?value=1425950065128833;must&amp;chnid=4"
-                                data-pb="block=library_channel&amp;rpage=album&amp;rseat=1425950065128833"><span
-                                    class="type-style">Hài Hước</span></a><a
-                                href="//www.iq.com/film-library?value=3158628296160833;must&amp;chnid=4"
-                                data-pb="block=library_channel&amp;rpage=album&amp;rseat=3158628296160833"><span
-                                    class="type-style">Tình Yêu</span></a></div>
+                        <div class="focus-info-tag type">
+                            {!! $currentMovie->categories->map(function ($category) {
+                                    return '<a href="' .
+                                        $category->getUrl() .
+                                        '" tite="' .
+                                        $category->name .
+                                        '"><span>' .
+                                        $category->name .
+                                        '</span></a>';
+                                })->implode(', ') !!}
+                            {!! $currentMovie->regions->map(function ($region) {
+                                    return '<a href="' .
+                                        $region->getUrl() .
+                                        '" tite="' .
+                                        $region->name .
+                                        '"><span>' .
+                                        $region->name .
+                                        '</span></a>';
+                                })->implode(', ') !!}
+                            <a><span>{{ $currentMovie->language }}</span></a>
+                        </div>
                         <div class="focus-info-tag">
                             <span class="key">Đạo diễn:</span>
                             <span>
@@ -325,6 +333,5 @@
 @endsection
 
 @push('scripts')
-
     {!! setting('site_scripts_facebook_sdk') !!}
 @endpush

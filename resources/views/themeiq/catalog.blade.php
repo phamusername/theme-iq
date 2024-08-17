@@ -1,52 +1,98 @@
 @extends('themes::themeiq.layout')
 
 @php
-    $years = Cache::remember('all_years', \Backpack\Settings\app\Models\Setting::get('site_cache_ttl', 5 * 60), function () {
-        return \Ophim\Core\Models\Movie::select('publish_year')
-            ->distinct()
-            ->pluck('publish_year')
-            ->sortDesc();
-    });
+    $years = Cache::remember(
+        'all_years',
+        \Backpack\Settings\app\Models\Setting::get('site_cache_ttl', 5 * 60),
+        function () {
+            return \Ophim\Core\Models\Movie::select('publish_year')->distinct()->pluck('publish_year')->sortDesc();
+        },
+    );
 @endphp
 
 
 
 @section('content')
-    <div id="p0" data-pjax-container="" data-pjax-push-state data-pjax-timeout="1000">
-        <div class="myui-panel myui-panel-list mt-2 clearfix">
+    <div class="sc-e2b0905f-0 csCKYT">
 
-            @include('themes::themeiq.inc.catalog_filter')
+        <main class="types.movies.index">
+            <section class="breadcrumb">
+                <div class="wrap-breadcrumb"
+                    style="background: url(https://dongphim.ink/themes/iqiyi/img/collection-bg-nomal.png) left center / cover no-repeat;">
+                    <h2 class="title-category">{{ $section_name }}</h2>
+                </div>
 
-            <div class="myui-panel-box clearfix">
-                    <div class="myui-panel_bd clearfix">
-                        <div class="myui-panel_hd">
-                                <div class="myui-panel__head clearfix">
-                                    <span class="icon icon-cinema"></span>
-                                    <h1 class="title">{{ $section_name }}</h1>
-                                </div>
-                        </div>
-                        <br />
-                        <div id="myui-vodlist clearfix" class="film-list" role="list">
-                            @foreach ($data as $key => $movie)
-                                @php
-                                    $xClass = 'item';
-                                    if ($key === 0 || $key % 4 === 0) {
-                                        $xClass .= ' no-margin-left';
-                                    }
-                                @endphp
-
-                                @include('themes::themeiq.inc.catalog_sections_movies_item')
-                            @endforeach
-                            
-                            <div class="col-md-12">
-                                <div class="d-flex justify-content-center">
-                                    {{ $data->appends(request()->all())->links('themes::themeiq.inc.pagination') }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            </section>
+            <div class="myui-panel myui-panel-list mt-2 clearfix" style="margin-right: 30px">
+                @include('themes::themeiq.inc.catalog_filter')
             </div>
-        </div>
+            <section class="list-item">
+                @foreach ($data as $key => $movie)
+                    @php
+                            $xClass = 'item';
+                            if ($key === 0 || $key % 4 === 0) {
+                                $xClass .= ' no-margin-left';
+                            }
+                        @endphp
+
+                    @include('themes::themeiq.inc.catalog_sections_movies_item')
+                @endforeach
+            </section>
+            <div class="list-item pagination">
+                {{ $data->appends(request()->all())->links('themes::themeiq.inc.pagination') }}
+            </div>
+        </main>
+
     </div>
 @endsection
+<style>
+    .myui-panel {
+        padding-left: 60px;
+        padding-right: 60px;
+        position: relative;
+    }
 
+    @media screen and (max-width: 1679px) and (min-width: 768px) {
+        .csCKYT {
+            padding-top: 60px;
+        }
+    }
+
+    .csCKYT {
+        padding-top: 70px;
+        max-width: 1520px;
+        margin: 0px auto;
+    }
+
+    .col-xs-6 {
+        width: 16.6666667%;
+    }
+
+    @media (max-width: 767px) {
+        .filter-box .col-xs-6 {
+            width: 50%;
+            padding: 5px
+        }
+    }
+
+    .btn-submit {
+        padding: 5.5px 8px;
+        font-size: 12px;
+        font-weight: bold;
+        background: #666;
+        color: #fff;
+        border: none;
+        outline: none;
+        border-radius: 0;
+    }
+
+    .filter-box .form-control {
+        padding: 0.25rem 0.75rem;
+        border-radius: 0;
+        -webkit-appearance: auto;
+        background: #383838;
+        border: 1px solid #383838;
+        color: #fafafa;
+        font-size: 14px;
+    }
+</style>

@@ -1,72 +1,331 @@
 @extends('themes::themeiq.layout')
+
+@push('header')
+    <link rel='stylesheet' href='/themes/iq/css/details/play2.css' type='text/css' />
+@endpush
 @section('content')
     <div class="TPost A D">
         <div class="Container">
-            <div class="optns-bx">
-                <div style="display: none" id="ploption" class="text-center">
-                    @foreach ($currentMovie->episodes->where('slug', $episode->slug)->where('server', $episode->server) as $server)
-                        <a onclick="chooseStreamingServer(this)" data-type="{{ $server->type }}" data-id="{{ $server->id }}"
-                            data-link="{{ $server->link }}" class="streaming-server current btn-sv btn btn-primary">
-                            Server #{{ $loop->iteration }}
-                        </a>
-                    @endforeach
-                </div>
-            </div>
             <div class="intl-play-container">
                 <div class="intl-play-left">
                     <div class="VideoPlayer">
-                        <div id="player-loaded"></div>
+                        <div style="display:flex; aspect-ratio: 16 / 9;" id="player-loaded"></div>
+                    </div>
+                    <div class="basis-2/4 text-center pt-2">
+                        <span class="text-sm font-medium pb-2 block uppercase">Đổi Server (Nếu Lag)</span>
+                        <div class="flex flex-row flex-wrap gap-2 items-center justify-center">
+                            @foreach ($currentMovie->episodes->where('slug', $episode->slug)->where('server', $episode->server) as $server)
+                                <a onclick="chooseStreamingServer(this)" data-type="{{ $server->type }}"
+                                    data-id="{{ $server->id }}" data-link="{{ $server->link }}"
+                                    style="text-decoration: none; border-color: rgb(63 63 70) !important; cursor: pointer;"
+                                    class="streaming-server hover:cursor-pointer text-gray-300 border border-zinc-700 px-2 py-2 text-xs font-medium rounded">Server
+                                    {{ $loop->iteration }}
+                                </a>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
                 <div class="intl-play-right">
                     <div class="MainContainer">
-                        <section class="SeasonBx AACrdn">
+                        <section class="SeasonBx AACrdn" style="padding: 0 16px">
                             <div class="Top AAIco-playlist_play AALink episodes-view episodes-load">
-                                <div class="Title"><a href="#">Danh sách tập <span>Vietsub</span></a></div>
+                                <div class="Title">Danh sách tập</div>
+                                <center style="padding:10px">
+                                    <input type="text" id="searchBox"
+                                        placeholder="Tìm tập phim..."
+                                        style="background: 0 0; border: 1px solid #fff; height: 32px; width: 200px; padding: 5px; color:#fff; border-radius: 3px !important">
+                                </center>
+                                <div class="loading-placeholder"></div>
                             </div>
                             <ul class="AZList">
-                                <li class=""><a
-                                        href="https://dongphim.ink/phim/thieu-nien-bach-ma-tuy-xuan-phong/tap-35"
-                                        title="35">35</a></li>
+                                @foreach ($currentMovie->episodes->groupBy('server') as $server => $data)
+                                    <div class="w-full">
+                                        <h3>{{ $server }}</h3>
+                                    </div>
+                                    @foreach ($data->sortBy('name', SORT_NATURAL)->groupBy('name') as $name => $item)
+                                        <li>
+                                            <a class="@if ($item->contains($episode)) active @endif"
+                                                href="{{ $item->first()->getUrl() }}"
+                                                title="{{ $name }}">{{ $name }}</a>
+                                        </li>
+                                    @endforeach
+                                @endforeach
                             </ul>
                         </section>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="Container">
+            <div class="TpRwCont ">
+                <main class="episodes.show">
+                    <div class="row infor-watching">
+                        <div class="col__left">
+                            <div class="info-detail">
+                                <h3 class="title" style="color: rgb(169, 169, 172)">
+                                    <a href="{{ $currentMovie->getUrl() }}" class="title-link">
+                                        <span class="intl-album-title-word-wrap" style="font-size: 20px">
+                                            {{ $currentMovie->name }}
+                                        </span>
+                                        <svg width="10px" height="41px" viewBox="0 0 25 41" version="1.1"
+                                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <g id="页面-1" stroke="none" stroke-width="1" fill="none"
+                                                fill-rule="evenodd">
+                                                <g id="轮播图元素-2" transform="translate(-324.000000, -2225.000000)"
+                                                    fill="#FFFFFF" fill-rule="nonzero">
+                                                    <g id="06-箭头" transform="translate(100.000000, 2102.000000)">
+                                                        <g id="hover" transform="translate(200.000000, 78.000000)">
+                                                            <path
+                                                                d="M44.1666667,52 L44.1666667,56.8372093 C44.1667695,57.3894941 43.7190542,57.8372093 43.1667695,57.8372093 C43.1667352,57.8372093 43.1667009,57.8372093 43.1666667,57.8371065 L22,57.8349302 L22,57.8349302 L22,78.4883721 C22,79.0406568 21.5522847,79.4883721 21,79.4883721 L16,79.4883721 C15.4477153,79.4883721 15,79.0406568 15,78.4883721 L15,55.5581395 L15,55.5581395 C15,53.1551754 16.9037148,51.1865074 19.3183879,51.0125024 L19.6666667,51 L43.1666667,51 C43.7189514,51 44.1666667,51.4477153 44.1666667,52 Z"
+                                                                id="箭头/右-"
+                                                                transform="translate(29.583333, 65.244186) scale(-1, 1) rotate(-45.000000) translate(-29.583333, -65.244186) ">
+                                                            </path>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </a>
+                                    Tập {{ $episode->name }}
+                                </h3>
+                                <div class="intl-play-time ">
+                                    <span class="focus-item-label-original">{{ request()->getHost() }} sản xuất</span>
+                                    <div class="broken-line"></div>
+                                    <span>{{ $currentMovie->publish_year }}</span>
+                                    <div class="broken-line h5-hide"></div>
+                                    <div class="broken-line h5-hide"></div>
+                                    <span class="update-set">Cập nhật tới
+                                        @if (!$currentMovie->is_copyright && count($currentMovie->episodes) && $currentMovie->episodes[0]['link'] != '')
+                                            @php
+                                                $currentMovie->episodes
+                                                    ->sortBy([['name', 'desc'], ['type', 'desc']])
+                                                    ->sortByDesc('name', SORT_NATURAL)
+                                                    ->unique('name')
+                                                    ->take(1)
+                                                    ->map(function ($episode) {
+                                                        $name = str_replace('Tập', '', $episode->name); // Loại bỏ chữ "Tập" khỏi tên tập
+                                                        echo 'Tập <i>' . $name . '</i>';
+                                                    });
+                                            @endphp
+                                        @endif
+                                        /
+                                        tổng cộng {{ $currentMovie->episode_total }} tập
+                                    </span>
+                                </div>
+                                <div class="intl-play-item-tags">
+                                    {!! $currentMovie->categories->map(function ($category) {
+                                            return '<a href="' .
+                                                $category->getUrl() .
+                                                '" tite="' .
+                                                $category->name .
+                                                '"><span>' .
+                                                $category->name .
+                                                '</span></a>';
+                                        })->implode(', ') !!}
+                                    {!! $currentMovie->regions->map(function ($region) {
+                                            return '<a href="' .
+                                                $region->getUrl() .
+                                                '" tite="' .
+                                                $region->name .
+                                                '"><span>' .
+                                                $region->name .
+                                                '</span></a>';
+                                        })->implode(', ') !!}
+                                    <a><span>{{ $currentMovie->language }}</span></a>
+                                </div>
+                                <div class="firm-desc">
+                                    <span style="color: rgb(169, 169, 172)" class="prev-text">Đạo diễn: </span>
+                                    <span class="desc-content">
+                                        {!! count($currentMovie->directors)
+                                            ? $currentMovie->directors->map(function ($director) {
+                                                    return '<span class="tt-at"><a href="' .
+                                                        $director->getUrl() .
+                                                        '" tite="Đạo diễn ' .
+                                                        $director->name .
+                                                        '">' .
+                                                        $director->name .
+                                                        '</a></span>';
+                                                })->implode(', ')
+                                            : 'Đang cập nhật' !!}
+                                    </span>
+                                </div>
+                                <div class="firm-desc">
+                                    <span style="color: rgb(169, 169, 172)" class="prev-text">Diễn viên: </span>
+                                    <span class="desc-content">
+                                        {!! count($currentMovie->actors)
+                                            ? $currentMovie->actors->map(function ($actor) {
+                                                    return '<span class="tt-at"><a href="' .
+                                                        $actor->getUrl() .
+                                                        '" tite="Đạo diễn ' .
+                                                        $actor->name .
+                                                        '">' .
+                                                        $actor->name .
+                                                        '</a></span>';
+                                                })->implode(', ')
+                                            : 'Đang cập nhật' !!}
+                                    </span>
+                                </div>
+                                <div class="banner-content__desc line-clamp-3">
+                                    <span class="key"></span>
+                                    <span style="color: rgb(169, 169, 172)">Miêu tả:</span>
+                                    {!! $currentMovie->content !!}
+                                    <div class="more-info">
+                                        <span class="text">Hiển thị thêm</span>
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    </div>
+                                </div>
+                                <div style="width: -webkit-fill-available" class="myui-panel myui-panel-bg clearfix">
+                                    <style>
+                                        @media only screen and (max-width: 767px) {
+                                            .fb-comments {
+                                                width: 100% !important;
+                                            }
+                                            .fb-comments iframe[style] {
+                                                width: 100% !important;
+                                            }
+                                        }
+
+                                        .fb-comments,
+                                        .fb-comments span {
+                                            background-color: #eee;
+                                        }
+
+                                        .fb-comments {
+                                            margin-bottom: 20px;
+                                        }
+                                    </style>
+                                    <div style="color:red;font-weight:bold;padding:5px">
+                                        Lưu ý các bạn không nên nhấp vào các đường link ở phần bình luận, kẻ gian có thể đưa virut vào thiết bị hoặc hack mất facebook của các bạn.
+                                    </div>
+                                    <div data-order-by="reverse_time" id="commit-99011102" class="fb-comments" data-href="{{ $currentMovie->getUrl() }}" data-width="" data-numposts="10"></div>
+                                    <script>
+                                        document.getElementById("commit-99011102").dataset.width = document.querySelector('.info-detail').clientWidth; // Set width based on col__left
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="firm-propose">
+                                <h2 style="font-size: 20px">
+                                    Đề xuất cho bạn
+                                </h2>
+                                <div class="slider__column splide">
+                                    <div class="splide__track">
+                                        <ul class="splide__list">
+                                            @foreach ($movie_related as $movie)
+                                                <li class="splide__slide">
+                                                    <a href="{{ $movie->getUrl() }}">
+                                                        <div class="splide__item">
+                                                            <div class="splide__img-wrap">
+                                                                <img src="{{ $movie->getThumbUrl() }}"
+                                                                    alt="{{ $movie->name }}" class="splide__img">
+                                                                <div class="episodes">Full</div>
+                                                            </div>
+                                                            <div class="splide__item-title">
+                                                                {{ $movie->name }}
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- <div class="col__right">
+                            @include('themes::themeiq.sidebar')
+                        </div> --}}
+                    </div>
+                </main>
+            </div>
+        </div>
     </div>
-    <style>
-        .intl-play-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: nowrap; /* No wrapping on larger screens */
-}
-
-.intl-play-left {
-    flex: 1; /* Take available space */
-    margin-right: 10px; /* Space between left and right */
-}
-
-.intl-play-right {
-    flex: 1; /* Take available space */
-}
-
-@media (max-width: 768px) {
-    .intl-play-container {
-        flex-direction: column; /* Stack on mobile */
-    }
-
-    .intl-play-left,
-    .intl-play-right {
-        margin-right: 0; /* Remove right margin */
-        margin-bottom: 10px; /* Space between stacked elements */
-    }
-}
-    </style>
 @endsection
 
 @push('scripts')
+    {{-- <script>
+        $(document).ready(function() {
+            const splideByCate = new Splide(".idol-wrap .splide", {
+                // Optional parameters
+                start: 0,
+                perPage: 5,
+                perMove: 1,
+                gap: 14,
+                type: "slide",
+                drag: "free",
+                snap: true,
+                arrows: true,
+                lazyLoad: true,
+                pagination: false,
+
+                // Responsive breakpoint
+                breakpoints: {
+                    1679: {
+                        perPage: 6,
+
+                    },
+                    1480: {
+                        perPage: 5,
+
+                    },
+                    1200: {
+                        perPage: 4,
+
+                    },
+                    768: {
+                        perPage: 3,
+                    }
+                }
+            });
+
+            splideByCate.mount();
+
+            $('.list-top-firm .firm-item-link').hover(function() {
+                $('.list-top-firm .firm-item-link.active').removeClass('active');
+                $(this).addClass('active');
+            })
+
+            function swapEpisode() {
+                let windowWidth = $(window).width();
+                if (windowWidth <= 1024) {
+                    let episode = $('.watcher .episodes').html();
+                    $('.episodes-response').html(episode);
+                } else {
+                    let episode = $('.episodes-response').html();
+                    if (episode.trim().length !== 0) {
+                        $('.watcher .episodes').html(episode);
+                    }
+                }
+            }
+
+            swapEpisode();
+            $(window).on("resize", function() {
+                swapEpisode();
+            })
+
+            var hiddenElement = $(".BtnLight.AAIco-lightbulb_outline");
+
+            function hideElementF() {
+                hiddenElement.hide();
+            }
+
+            function showElementF() {
+                hiddenElement.show();
+            }
+
+            $(document).ready(function() {
+                setInterval(hideElementF, 5000); // Hide element every 5 seconds
+
+                $(document).on('click', function() {
+                    showElementF();
+                    clearTimeout(autoHideTimeout);
+                    autoHideTimeout = setTimeout(hideElementF, 5000);
+                });
+
+                var autoHideTimeout = setTimeout(hideElementF, 5000);
+            });
+        })
+        console.log('Design by: @gggforyou')
+    </script> --}}
     <script>
         $(document).ready(function() {
             const splideByCate = new Splide(".firm-propose .splide", {
@@ -151,12 +410,13 @@
         })
         console.log('Design by: @gggforyou')
     </script>
-    <link rel='stylesheet' href='/themes/iq/css/details/play2.css' type='text/css' />
-    <link rel='stylesheet' href='/themes/iq/css/demo.css' type='text/css' />
+
+    {{-- <link rel='stylesheet' href='/themes/iq/css/demo.css' type='text/css' /> --}}
     <script src="/themes/iq/js/details.js?ver=1.0.1"></script>
+    <script type="text/javascript" src="/themes/iq/js/util.js"></script>
     <script src="/themes/iq/static/player/skin/juicycodes.js"></script>
     <link href="/themes/iq/static/player/skin/juicycodes.css" rel="stylesheet" type="text/css">
-    <link rel='stylesheet' href='/themes/iq/css/details/index.css?ver=1.0.1' type='text/css' />
+    {{-- <link rel='stylesheet' href='/themes/iq/css/details/index.css?ver=1.0.1' type='text/css' /> --}}
 
     {{--    <script src="/themes/iq/static/player/js/p2p-media-loader-core.min.js"></script> --}}
     {{--    <script src="/themes/iq/static/player/js/p2p-media-loader-hlsjs.min.js"></script> --}}
@@ -171,6 +431,7 @@
         var episode_id = {{ $episode->id }};
         const wrapper = document.getElementById('player-loaded');
         const vastAds = "{{ Setting::get('jwplayer_advertising_file') }}";
+        $("a[onclick^=\"chooseStreamingServer\"]").eq(0).addClass("active")
 
         function chooseStreamingServer(el) {
             const type = el.dataset.type;
@@ -189,9 +450,9 @@
             episode_id = id;
 
             Array.from(document.getElementsByClassName('streaming-server')).forEach(server => {
-                server.classList.remove('bg-red-600');
+                server.classList.remove('bg-black');
             })
-            el.classList.add('bg-red-600')
+            el.classList.add('bg-black')
 
             renderPlayer(type, link, id);
         }
@@ -348,6 +609,24 @@
 
                 const resumeData = 'OPCMS-PlayerPosition-' + id;
 
+                player.on('error', function() {
+                    // Hiển thị thông báo lỗi
+                    // fx.messageBox(
+                    //     "Lỗi",
+                    //     "Phim <strong>{{ $currentMovie->name }} - {{ $currentMovie->origin_name }} Tập {{ $episode->name }}</strong> bạn đang xem hiện tại đã bị lỗi, hãy nhấn vào <a href='' target='_blank'><span style='color: red; font-weight: bold;'>đây</span></a> để báo cho chúng tôi qua Telegram để chúng tôi sửa lỗi sớm nhất có thể.",
+                    // );
+                    $("a[onclick^=\"chooseStreamingServer\"].active").removeClass(".active").next().click()
+                        .addClass(".active")
+                });
+                player.on('error', function() {
+                    // Hiển thị thông báo lỗi
+                    fx.messageBox(
+                        "Lỗi",
+                        "Phim <strong>{{ $currentMovie->name }} - {{ $currentMovie->origin_name }} Tập {{ $episode->name }}</strong> bạn đang xem hiện tại đã bị lỗi, hãy nhấn vào <a href='' target='_blank'><span style='color: red; font-weight: bold;'>đây</span></a> để báo cho chúng tôi qua Telegram để chúng tôi sửa lỗi sớm nhất có thể.",
+                    );
+
+                });
+
                 player.on('ready', function() {
                     if (typeof(Storage) !== 'undefined') {
                         if (localStorage[resumeData] == '' || localStorage[resumeData] == 'undefined') {
@@ -413,7 +692,7 @@
 
 
 
-        let lists = document.getElementsByClassName("sort-list");
+        let lists = document.getElementsByClassName("AZList");
         // 		let list = document.getElementsByClassName("episodes")[0].getElementsByTagName("li");
 
         searchBtn.addEventListener("click", searchList);

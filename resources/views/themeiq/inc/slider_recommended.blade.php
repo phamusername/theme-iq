@@ -5,72 +5,78 @@
 
                 <ul class="splide__list">
                     @foreach ($recommendations['data'] as $movie)
-                    <li class="splide__slide" id="splide01-slide07" role="tabpanel" aria-roledescription="slide"
-                        aria-label="7 of 7" style="width: calc(100%);" aria-hidden="true">
-                        <a href="https://dongphim.ink/phim/du-toi-khong-phai-nguoi-hung" tabindex="-1">
-                            <img src="{{$movie->getPosterUrl()}}"
-                                alt="Slider">
-                        </a>
-                        <div class="crs-content">
-                            <a href="https://dongphim.ink/phim/du-toi-khong-phai-nguoi-hung"
-                                tabindex="-1">
-                                <div class="crs-content__title">
-                                    <h2>{{$movie->name}}</h2>
-                                </div>
-                                <span class="crs-content__top">
-                                    <div class="top">
-                                        Đang chiếu
-                                    </div>
-                                    The Atypical Family
-                                </span>
-                                <div class="crs-content__infor">
-                                    <div class="rate">
-                                        <i class="fas fa-star"></i> 8.0
-                                    </div>
-                                    <div class="year after-item">
-                                        2024
-                                    </div>
-                                    <div class="week after-item">
-
-                                    </div>
-                                    <div class="episode_number after-item">
-                                        Phim bộ
-                                    </div>
-                                </div>
+                        <li class="splide__slide">
+                            <a href="{{ $movie->getUrl() }}" tabindex="-1">
+                                <img src="{{ $movie->getPosterUrl() }}" alt="Slider">
                             </a>
-                            <div class="crs-content__category">
-                                <a
-                                    href="https://dongphim.ink/phim/du-toi-khong-phai-nguoi-hung" tabindex="-1">Đạo
-                                    diễn:
+                            <div class="crs-content">
+                                <a href="{{ $movie->getUrl() }}" tabindex="-1">
+                                    <div class="crs-content__title">
+                                        <h2>{{ $movie->name }}</h2>
+                                    </div>
+                                    <span class="crs-content__top">
+                                        <div class="top">
+                                            @if ($movie->status == 'ongoing')
+                                                Đang chiếu
+                                            @elseif ($movie->status == 'completed')
+                                                Hoàn thành
+                                            @else
+                                                Trailer
+                                            @endif
+                                        </div>
+                                        {{ $movie->origin_name }}
+                                    </span>
+                                    <div class="crs-content__infor">
+                                        <div class="rate">
+                                            <i class="fas fa-star"></i> {{ $movie->getRatingStar() }}
+                                        </div>
+                                        <div class="year after-item">
+                                            {{ $movie->publish_year }}
+                                        </div>
+                                        <div class="week after-item">
+
+                                        </div>
+                                        <div class="episode_number after-item">
+                                            @if ($movie->type == 'movies')
+                                                Phim lẻ
+                                            @else
+                                               Phim bộ
+                                            @endif
+                                        </div>
+                                    </div>
                                 </a>
-                                <a href="https://dongphim.ink/dao-dien/jo-hyun-tak" tite="Đạo diễn Jo Hyun-tak"
-                                    tabindex="-1">Jo Hyun-tak</a>
-                            </div>
-                            <div class="crs-content__category">Thể loại:
-                                <a href="https://dongphim.ink/the-loai/hanh-dong" tite="Thể loại Hành Động"
-                                    tabindex="-1">Hành Động</a>,
-                                    <a href="https://dongphim.ink/the-loai/vien-tuong"
-                                    tite="Thể loại Viễn Tưởng" tabindex="-1">Viễn Tưởng</a>, <a
-                                    href="https://dongphim.ink/the-loai/phieu-luu" tite="Thể loại Phiêu Lưu"
-                                    tabindex="-1">Phiêu Lưu</a>, <a href="https://dongphim.ink/the-loai/khoa-hoc"
-                                    tite="Thể loại Khoa Học" tabindex="-1">Khoa Học</a>, <a
-                                    href="https://dongphim.ink/the-loai/chinh-kich" tite="Thể loại Chính Kịch"
-                                    tabindex="-1">Chính Kịch</a>
-                            </div>
-                            <div class="crs-content__desc">Trong bộ phim The Atypical Family, câu chuyện xoay quanh một
-                                gia đình từng sở hữu siêu năng lực độc đáo nhưng bỗng chốc mất khả năng đặc biệt do
-                                những rắc rối t
-                                ...
-                            </div>
-                            <div class="sc-a4176019-0 gHWgi option-button">
-                                <div class="sc-88e580be-0 gUElsb">
-                                    <div class="wrap" href="https://dongphim.ink/phim/du-toi-khong-phai-nguoi-hung">
-                                        <i class="icon-play"></i>
+                                <div class="crs-content__category">
+                                    <a href="{{ $movie->getUrl() }}" tabindex="-1">Đạo
+                                        diễn:
+                                    </a>
+                                    <a href="https://dongphim.ink/dao-dien/jo-hyun-tak" tite="Đạo diễn Jo Hyun-tak"
+                                        tabindex="-1">Jo Hyun-tak</a>
+                                </div>
+                                <div class="crs-content__category">Thể loại:
+                                    <a href="https://dongphim.ink/the-loai/hanh-dong" tite="Thể loại Hành Động"
+                                        tabindex="-1">Hành Động</a>,
+                                    <a href="https://dongphim.ink/the-loai/vien-tuong" tite="Thể loại Viễn Tưởng"
+                                        tabindex="-1">Viễn Tưởng</a>, <a href="https://dongphim.ink/the-loai/phieu-luu"
+                                        tite="Thể loại Phiêu Lưu" tabindex="-1">Phiêu Lưu</a>, <a
+                                        href="https://dongphim.ink/the-loai/khoa-hoc" tite="Thể loại Khoa Học"
+                                        tabindex="-1">Khoa Học</a>, <a href="https://dongphim.ink/the-loai/chinh-kich"
+                                        tite="Thể loại Chính Kịch" tabindex="-1">Chính Kịch</a>
+                                </div>
+                                <div class="crs-content__desc">Trong bộ phim The Atypical Family, câu chuyện xoay quanh
+                                    một
+                                    gia đình từng sở hữu siêu năng lực độc đáo nhưng bỗng chốc mất khả năng đặc biệt do
+                                    những rắc rối t
+                                    ...
+                                </div>
+                                <div class="sc-a4176019-0 gHWgi option-button">
+                                    <div class="sc-88e580be-0 gUElsb">
+                                        <div class="wrap" href="{{ $movie->getUrl() }}">
+                                            <i class="icon-play"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
                     @endforeach
                 </ul>
 

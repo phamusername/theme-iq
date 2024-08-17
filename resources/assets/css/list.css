@@ -29,6 +29,8 @@
     margin-right: 64px;
     margin-left: 64px;
     margin-bottom: 40px !important;
+    padding-left: 60px;
+    padding-right: 60px;
 }
 
 main:not([class~="categories.movies.index"]) .list-item {
@@ -41,9 +43,9 @@ main:not([class~="categories.movies.index"]) .list-item {
 .item-wrap {
     width: calc((100% - 16 * 6px) / 6);
     margin-bottom: 36px;
-    margin-right: 8px;
-    margin-left: 8px;
-    border-radius: 10px;
+    margin-right: 14px;
+    /* margin-left: 8px; */
+    border-radius: 4px;
     overflow: hidden;
     transition: all 0.5s;
 }
@@ -58,7 +60,7 @@ main:not([class~="categories.movies.index"]) .list-item {
 }
 
 .item-img .desc-img {
-    height: 450px;
+    height: 277px;
     width: 100%;
     object-fit: cover;
 }
@@ -177,6 +179,8 @@ main:not([class~="categories.movies.index"]) .list-item {
     .list-item {
         margin-right: 15px;
         margin-left: 15px;
+        padding-right: 10px;
+        padding-left: 10px;
     }
 
     .item-img .desc-img {
@@ -287,7 +291,8 @@ main:not([class~="categories.movies.index"]) .list-item {
 }
 
 .wp-pagenavi .pages, .wp-pagenavi a.prev.page-numbers, .wp-pagenavi .next.page-numbers, .nav-links a {
-    color: var(--main-color);
+    /* color: var(--main-color); */
+    color: black;
 }
 
 .list-item.pagination a.page-link {
@@ -307,4 +312,16 @@ main:not([class~="categories.movies.index"]) .list-item {
     text-transform: none;
     white-space: nowrap;
     word-wrap: normal
+}
+
+.play-button-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.item-img:hover .play-button-container {
+    display: block;
 }
