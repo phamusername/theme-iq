@@ -1,0 +1,1867 @@
+.main {
+    margin-top: 90px;
+}
+
+.header {
+    background-color: rgb(10, 12, 15);
+}
+
+html {
+    box-sizing: border-box;
+    font-family: sans-serif;
+    font-size: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%
+}
+
+[class*=fa-]:before {
+    font-family: FontAwesome;
+}
+
+body, figure {
+    margin: 0
+}
+
+article, aside, details, figcaption, figure, footer, header, main, menu, nav, section, summary, picture {
+    display: block
+}
+
+audio, canvas, progress, video {
+    display: inline-block
+}
+
+a {
+    background-color: transparent;
+    text-decoration: none
+}
+
+a:active, a:hover, :focus {
+    outline: 0
+}
+
+h1 {
+    font-size: 2rem;
+    margin: .67rem 0
+}
+
+img, video, iframe {
+    border: 0;
+    max-width: 100%;
+    height: auto;
+    display: inline-block;
+    vertical-align: middle;
+    -ms-interpolation-mode: bicubic
+}
+
+svg:not(:root) {
+    overflow: hidden
+}
+
+figure img {
+    vertical-align: top
+}
+
+button, input, select, textarea {
+    font: inherit;
+    margin: 0
+}
+
+button, input {
+    overflow: visible
+}
+
+button, select {
+    text-transform: none
+}
+
+button, html [type=button], [type=reset], [type=submit] {
+    -webkit-appearance: button
+}
+
+textarea {
+    overflow: auto;
+    resize: vertical
+}
+
+::-webkit-input-placeholder {
+    color: inherit;
+    opacity: .8
+}
+
+a[class*=fa-], span[class*=fa-], strong[class*=fa-], i[class*=fa-], a[class*=AAIco-], span[class*=AAIco-], strong[class*=AAIco-], i[class*=AAIco-] {
+    display: inline-block
+}
+
+[class*=AAIco-]:before, [class*=fa-]:before, .widget_categories > ul li > a:before, .comment-reply-link:before, .comment-notes:before, .TPost .Description .CastList li:before, .widget_ratings-widget li:before, .widget_recent_comments li:before, .widget_recent_entries li:before, .widget_views li:before, .widget_rss li:before, .widget_meta li:before, .widget_pages li:before, .widget_archive li:before {
+    display: inline-block;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: inherit;
+    line-height: inherit;
+    vertical-align: top;
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
+    word-wrap: normal
+}
+
+body {
+    font-size: .875rem;
+    line-height: 1.5625rem;
+    font-family: source sans pro, sans-serif;
+    word-wrap: break-word
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    font-size: inherit
+}
+
+h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, .Title a {
+    color: inherit
+}
+
+h1 {
+    font-size: 1.5rem
+}
+
+h2 {
+    font-size: 1.25rem
+}
+
+h3 {
+    font-size: 1.187rem
+}
+
+*, :before, :after {
+    box-sizing: inherit
+}
+
+html {
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.Container {
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%
+}
+
+ul, ol, dl {
+    list-style-position: outside
+}
+
+ul ul {
+    list-style-type: inherit
+}
+
+ul ul, ul ol, ol ol, ol ul {
+    margin-left: .937rem;
+    margin-bottom: 0
+}
+
+ul, ol {
+    margin-left: .937rem
+}
+
+nav ul, [class*=Menu], [class*=List], [class*=Row] {
+    margin: 0;
+    padding: 0;
+    list-style-type: none
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem
+}
+
+ul, ol, dl, dl dt, dl dd, h1, h2, h3, h4, h5, h6, p, blockquote, table, input, textarea, button, select, [class*=Form-] {
+    margin-bottom: .937rem
+}
+
+@media screen and (min-width: 62em) {
+    .Container {
+        max-width: 990px
+    }
+}
+
+@media screen and (min-width: 70em) {
+    .Container {
+        max-width: 1170px
+    }
+}
+
+button, input, .Form-Select select, textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none
+}
+
+button, input, select, textarea {
+    font: inherit;
+    width: 100%;
+    vertical-align: middle;
+    line-height: normal
+}
+
+input, textarea, select, .Form-Select label {
+    border: 0;
+    color: inherit;
+    border-radius: 6px
+}
+
+input, textarea, select, .Form-Select label {
+    display: block;
+    padding: .5rem 1rem;
+    width: 100%
+}
+
+input, select {
+    height: 2.5rem;
+    line-height: normal
+}
+
+textarea {
+    overflow: auto;
+    max-width: 100%;
+    height: auto;
+    resize: vertical;
+    padding: 1rem;
+    max-height: 300px
+}
+
+input, textarea, select, .Form-Select label {
+    opacity: .7
+}
+
+.Button, button, input[type=button], input[type=reset], input[type=submit] {
+    border: 0;
+    cursor: pointer;
+    padding: 5px 1rem;
+    width: auto;
+    display: inline-block;
+    text-align: center;
+    line-height: 1.875rem;
+    border-radius: 5px
+}
+
+.Button > span, button > span {
+    white-space: nowrap
+}
+
+[class*=Btn] {
+    cursor: pointer
+}
+
+button, input, textarea, select, label, label i:before, a, [class*=Btn] {
+    transition: .2s
+}
+
+.Objf img {
+    object-fit: cover;
+    object-position: top
+}
+
+.TPost .Title, .TPost .Info > * {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: .4rem;
+    margin-bottom: 5px
+}
+
+.TPost .Info > *:last-child {
+    margin-right: 0
+}
+
+.TPost .Title, .TPost .Info {
+    margin-bottom: 5px
+}
+
+.TPost .Info {
+    font-size: .75rem;
+    line-height: 1.25rem;
+    padding: 5px 0;
+    font-weight: 700
+}
+
+.TPost .Info:after {
+    clear: both;
+    content: '';
+    display: block;
+    overflow: hidden
+}
+
+.TPost .Info > * {
+    float: left
+}
+
+.TPost .Description {
+    margin-bottom: 1rem
+}
+
+.TPost .Description p[class] {
+    margin-bottom: .2rem
+}
+
+.TPost .Description a {
+    font-weight: 700
+}
+
+.Qlty {
+    color: currentColor;
+    border: 1px solid currentColor;
+    height: 1.25rem;
+    line-height: 1.1rem;
+    padding: 0 .5rem;
+    border-radius: 30px;
+    text-transform: uppercase;
+    font-size: .625rem;
+    display: inline-block
+}
+
+.TPost .Image {
+    position: relative
+}
+
+.TPost .Image figure, .TPost .Image figure img {
+    border-radius: 3px;
+    overflow: hidden
+}
+
+.TPost .Image figure {
+    position: relative;
+    padding-top: 150%
+}
+
+.TPost .Image figure img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%
+}
+
+.TPost.A {
+    position: relative;
+    padding: 10rem 0 4rem;
+    margin-bottom: 1.875rem
+}
+
+.TPost.A .Image {
+    z-index: -1;
+    overflow: hidden
+}
+
+.TPost.A .Image:before {
+    content: '';
+    background-color: rgba(0, 0, 0, .2);
+    z-index: 2
+}
+
+.TPost.A .Image:after {
+    z-index: 3;
+    content: ''
+}
+
+.TPost.A .Image figure {
+    z-index: 1;
+    padding-top: 0
+}
+
+.TPost.A .Image, .TPost.A .Image figure, .TPost.A .Image img, .TPost.A .Image:before, .TPost.A .Image:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0
+}
+
+.TPost.A .TPMvCn {
+    margin-left: 0;
+    min-height: 780px
+}
+
+.TPost.A .Title {
+    font-size: 20px;
+    font-weight: 700
+}
+
+.TPost.A .Description {
+    font-size: 1.125rem;
+    line-height: 1.5625rem
+}
+
+.TPost.A .Description p:not([class]) {
+    max-height: 6.25rem;
+    overflow: auto
+}
+
+.TPost.B {
+    position: relative;
+    border-radius: 3px;
+    margin-bottom: 0
+}
+
+.TPost.B .Image figure img {
+    transition: .2s
+}
+
+.TPost.B .Image .Qlty {
+    border: 0;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    line-height: 1rem;
+    height: 1rem
+}
+
+.TPost.B .Image + .Title {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: .5rem;
+    padding: 0 .5rem;
+    border-radius: 0 0 10px 10px;
+    font-size: .75rem;
+    line-height: 1rem;
+    color: #fff;
+    font-weight: 700;
+    margin: 0
+}
+
+.MovieListTop, .RelatedList {
+    margin-bottom: 2rem
+}
+
+article {
+    margin-bottom: 2rem
+}
+
+section > .Top, article > .Top {
+    margin-bottom: 1rem;
+    line-height: 1.875rem
+}
+
+section > .Top[class*=fa-], section > .Top[class*=AAIco-], article > .Top[class*=fa-], article > .Top[class*=AAIco-] {
+    position: relative
+}
+
+section > .Top[class*=fa-] > .Title, section > .Top[class*=AAIco-] > .Title, article > .Top[class*=fa-] > .Title, article > .Top[class*=AAIco-] > .Title {
+    padding: 8px 0px 0px 16px
+}
+
+section > .Top > .Title, article > .Top > .Title {
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-bottom: 0;
+    padding: 5px 0;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: .5rem
+}
+
+.AZList {
+    padding: 8px 0px 0px 16px
+}
+
+.AZList > li {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    padding: 3px;
+    text-align: center
+}
+
+.AZList > li > a {
+    display: block;
+    line-height: 30px;
+    border-radius: 3px;
+    font-size: .875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    min-width: 40px;
+    padding: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ShareList, .ShareList > li {
+    display: inline-block;
+    vertical-align: top
+}
+
+.ShareList {
+    font-size: 0
+}
+
+.ShareList > li {
+    font-size: 1.25rem;
+    margin-right: .5rem
+}
+
+.ShareList > li > a {
+    width: 40px;
+    height: 40px;
+    line-height: 36px;
+    text-align: center;
+    border-radius: 4rem;
+    border: 2px solid transparent;
+    display: inline-block
+}
+
+.TpRwCont {
+    margin-bottom: 1.875rem
+}
+
+.TpRwCont:last-child {
+    margin-bottom: 0
+}
+
+main > .TPost.A {
+    padding: 0
+}
+
+.VideoPlayer {
+    position: relative
+}
+
+.VideoPlayer > span[class*=Btn] {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    right: -5px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 50px;
+    background-color: #fff;
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, .3);
+    z-index: 4;
+    font-size: 1.5rem
+}
+
+.VideoPlayer > span.BtnOptions {
+    top: -70px;
+    white-space: nowrap;
+    overflow: hidden
+}
+
+.VideoPlayer > span.BtnOptions:before, .VideoPlayer > span.BtnOptions > i {
+    width: 100%;
+    transition: .2s
+}
+
+.VideoPlayer > span.BtnOptions > i {
+    right: -100%
+}
+
+.VideoPlayer > span.BtnOptions + .BtnLight {
+    bottom: -70px
+}
+
+.VideoPlayer > span.BtnLight {
+    bottom: 0
+}
+
+.VideoPlayer .Video {
+    position: relative;
+    min-height: 250px;
+    max-height: 720px;
+    overflow: hidden;
+    display: none;
+    animation: scale .7s ease-in-out
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(.9);
+        opacity: 0
+    }
+    50% {
+        transform: scale(1.01);
+        opacity: .5
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1
+    }
+}
+
+.VideoPlayer .Video.on {
+    display: block
+}
+
+.VideoPlayer .Video:before {
+    content: '';
+    display: block;
+    padding-top: 56.25%
+}
+
+.VideoPlayer .Video iframe, .VideoPlayer .Video embed, .VideoPlayer .Video video, .VideoPlayer .Video object {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%
+}
+
+.VideoOptions {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    min-height: 250px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    padding: 4rem 1rem;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, .8);
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0);
+    transition: .2s
+}
+
+.VideoOptions > .Top {
+    padding: 0 1rem;
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .1)
+}
+
+.VideoOptions > .Top:before {
+    font-size: 1.5625rem;
+    margin-top: 5px;
+    margin-left: 1rem
+}
+
+.VideoOptions > .Top .Title {
+    font-size: 1.125rem;
+    text-transform: uppercase
+}
+
+.VideoOptions.open {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1)
+}
+
+.VideoOptions.open + .BtnOptions, .lgtbx-on .VideoPlayer > span.BtnLight {
+    color: #fff
+}
+
+.VideoOptions.open + .BtnOptions, .lgtbx-on .VideoPlayer > span.BtnLight {
+    background-color: var(--main-color);
+}
+
+.VideoOptions.open + .BtnOptions:before {
+    margin-left: -100%
+}
+
+section.VideoOptions > .Top {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0
+}
+
+section.VideoOptions > .Top .Title {
+    color: #fff
+}
+
+.TPost.D {
+    padding-top: 6rem;
+    padding-bottom: 0
+}
+
+.rating-content {
+    display: inline-block;
+    vertical-align: top
+}
+
+.TPost.A .Description a {
+    font-weight: 400
+}
+
+.SeasonBx {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 1rem
+}
+
+.SeasonBx .Top {
+    position: relative;
+    margin-bottom: 0
+}
+
+.SeasonBx.AACrdn .Top {
+    margin-bottom: 0
+}
+
+.SeasonBx.AACrdn .Top.on, .SeasonBx .Top {
+    margin-bottom: 1rem
+}
+
+.Description p a {
+    font-weight: 700
+}
+
+.SearchMovies .sol-selection-container, .trsrcbx {
+    border-radius: 10px !important
+}
+
+.trsrcbx {
+    position: absolute
+}
+
+.owl-carousel {
+    display: none;
+    width: 100%;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+    z-index: 1
+}
+
+.post-ratings {
+    font-size: 0;
+    height: 20px;
+    line-height: 18px;
+    padding: 1px 0;
+    white-space: nowrap
+}
+
+img[src*=rating_] {
+    display: inline-block !important;
+    width: 18px !important;
+    height: 18px;
+    padding-left: 18px !important;
+    margin-left: 0 !important;
+    vertical-align: top;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    margin-right: 0;
+    background-size: cover
+}
+
+img[src*="on.gif"] {
+    background-image: url(../../img/cnt/rating_on.gif);
+}
+
+.sol-container.sol-active .sol-selection-container, .trsrcbx {
+    display: block;
+    position: fixed;
+    left: inherit;
+    top: inherit;
+    z-index: 10000
+}
+
+.sol-active.sol-selection-top .sol-selection-container, .trsrcbx {
+    -webkit-box-shadow: 0 0 12px rgba(0, 0, 0, .175);
+    -moz-box-shadow: 0 0 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 0 12px rgba(0, 0, 0, .175)
+}
+
+.lgtbx {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0;
+    visibility: hidden;
+    transition: .2s;
+    cursor: pointer
+}
+
+.lgtbx-on {
+    overflow: hidden
+}
+
+.lgtbx-on .VideoPlayer {
+    z-index: 999
+}
+
+.lgtbx-on .VideoPlayer .lgtbx {
+    visibility: visible;
+    opacity: .9;
+    z-index: 2
+}
+
+.lgtbx-on .VideoPlayer .Video {
+    z-index: 3
+}
+
+@media screen and (min-width: 48em) {
+    .Description p.Cast {
+        clear: both
+    }
+}
+
+@media screen and (min-width: 62em) {
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px
+    }
+
+    .TpRwCont {
+        display: table;
+        width: 100%;
+        table-layout: fixed
+    }
+
+    .TpRwCont > main, .TpRwCont > aside {
+        display: table-cell;
+        vertical-align: top
+    }
+
+    .TpRwCont > main {
+        padding-right: 1.875rem
+    }
+}
+
+@media screen and (min-width: 75em) {
+    .VideoPlayer > span[class*=Btn] {
+        right: -25px
+    }
+}
+
+@media screen and (min-width: 85em) {
+    .Container {
+        max-width: 1300px
+    }
+}
+
+@media screen and (min-width: 100em) {
+    .Container {
+        max-width: 1700px
+    }
+}
+
+.optns-bx {
+    display: flex;
+    flex-wrap: wrap
+}
+
+.drpdn {
+    margin-right: 16px;
+    position: relative;
+    margin-bottom: 16px
+}
+
+.optns-bx * > .Button {
+    display: inline-flex;
+    text-align: left;
+    margin-bottom: 0
+}
+
+.optns-bx * > .Button:not(.on) {
+    background-color: rgba(0, 0, 0, .5);
+    opacity: .7
+}
+
+.optns-bx * > .Button:not(.on):hover {
+    opacity: 1
+}
+
+.optns-bx * > .Button > span {
+    line-height: 20px;
+    font-weight: 700;
+    font-size: 16px;
+    padding-right: 16px
+}
+
+.optns-bx * > .Button > span span {
+    display: block;
+    font-weight: 400;
+    font-size: 12px
+}
+
+.optns-bx * > .Button.on + .optnslst {
+    display: block
+}
+
+.optnslst {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    z-index: 1;
+    margin: 8px 0 0;
+    width: 220px;
+    padding: 8px;
+    border-radius: 8px;
+    list-style: none
+}
+
+.optnslst .Button {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 0
+}
+
+.optnslst li {
+    margin-bottom: 8px
+}
+
+.optnslst li:last-child {
+    margin-bottom: 0
+}
+
+.navepi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px
+}
+
+.navepi a {
+    padding-left: 16px;
+    padding-right: 16px;
+    display: inline-flex;
+    align-items: center
+}
+
+.navepi a.off {
+    opacity: .5;
+    filter: grayscale(1);
+    pointer-events: none
+}
+
+.navepi a.prev span, .navepi a.next span {
+    display: none;
+    font-weight: 400
+}
+
+.navepi a.list i {
+    font-size: 20px
+}
+
+@media screen and (min-width: 30em) {
+    .navepi a.prev span, .navepi a.next span {
+        display: inline-block
+    }
+
+    .navepi a.prev span {
+        margin-left: 8px
+    }
+
+    .navepi a.next span {
+        margin-right: 8px
+    }
+}
+
+a:hover, .SearchBtn > i, .Top:before, .TpMvPlay:before, .TPost.B .TPMvCn .TPlay:before, .SrtdBy li a:before, .Clra, .ShareList > li > a, .PlayMovie:hover, .VideoPlayer > span, .OptionBx p:before, .comment-reply-link:before, section > .Top > .Title > span, .widget_categories > ul li:hover > a:before, .Frm-Slct > label:before, .widget span.required, .comment-notes:before, .TPost .Description .CastList li:hover:before, .error-404:before, .widget_recent_comments li:before, .widget_recent_entries li:before, .widget_views li:before, .widget_rss li:before, .widget_meta li:before, .widget_pages li:before, .widget_archive li:before {
+    color: var(--main-color);
+}
+
+@media screen and (min-width: 62em) {
+    ::-webkit-scrollbar-thumb {
+        background-color: rgb(0 0 0 / 0%);
+    }
+}
+
+body {
+    background-color: #1a191f
+}
+
+
+body {
+    color: #818083
+}
+
+a, .ShareList.Count .numbr {
+    color: #fff
+}
+
+.Top > .Title, .Title.Top, .comment-reply-title, #email-notes, .Description h1, .Description h2, .Description h3, .Description h4, .Description h5, .Description h6, .Description legend {
+    color: #fff
+}
+
+.Frm-Slct > label, .TPost.B .TPMvCn, .SrtdBy.open .List, .SearchMovies .sol-selection, .trsrcbx, .SearchMovies .sol-no-results, .OptionBx {
+    background-color: #1a191f
+}
+
+.TPost.A .Image:after, .TPost .Description .CastList:before {
+    background: unset;
+    box-shadow: 25px 25px 50px 65px #1a191f inset, -25px -25px 50px 50px #1a191f inset;
+}
+
+.Button, a.Button, a.Button:hover, button, input[type="button"], input[type="reset"], input[type="submit"], .BuyNow > a, .sol-selected-display-item, .trsrclst > li, .ShareList > li > a:hover, .TPost.B .Image .Qlty {
+    background-color: var(--main-color);
+}
+
+.ShareList > li > a {
+    border-color: var(--main-color);
+}
+
+/* .Button:hover, .Button:hover, button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .BuyNow > a:hover {
+    background-color: var(--main-color);
+} */
+
+.Button, a.Button, button, input[type="button"], input[type="reset"], input[type="submit"], .BuyNow > a, .sol-selected-display-item, .trsrclst > li, .ShareList > li > a:hover, .TPost.B .Image .Qlty {
+    color: #fff
+}
+
+
+.Button:hover, .Button:hover, button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .BuyNow > a:hover {
+    color: #fff
+}
+
+
+input, textarea, select, .Form-Select label, .OptionBx p {
+    background-color: #2a292f
+}
+
+
+input, textarea, select, .Form-Select label, .OptionBx p {
+    color: #fff
+}
+
+/* .SeasonBx {
+    border-bottom-color: #26252a
+} */
+
+.menu-azlist ul.sub-menu a, .AZList > li > a, .wp-pagenavi a, .wp-pagenavi span, .nav-links a, .nav-links span, .tagcloud a {
+    background-color: #313036
+}
+
+.menu-azlist ul.sub-menu a:hover, .menu-azlist [class*="current"] > a, .AZList a:hover, .AZList .Current a, .wp-pagenavi a:hover, .wp-pagenavi span.current, .nav-links a:hover, .nav-links [class*="current"], .tagcloud a:hover {
+    background-color: var(--main-color);
+}
+
+.menu-azlist ul.sub-menu a, .AZList > li > a, .wp-pagenavi a, .wp-pagenavi span, .tagcloud a {
+    /* color: #fff !important; */
+    font-size: 10px;
+}
+
+.Menu li.menu-azlist:hover ul.sub-menu a:hover, .menu-azlist [class*="current"] > a, .AZList a:hover, .AZList .Current a, .wp-pagenavi a:hover, .wp-pagenavi span.current, .nav-links a:hover, .nav-links [class*="current"], .tagcloud a:hover {
+    color: rgb(28, 199, 73) !important;
+    background: rgb(35, 37, 43);
+}
+
+.Button:hover, .Button:hover, button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .BuyNow > a:hover {
+    box-shadow: none
+}
+
+.TPost.B .TPMvCn, aside .Wdgt, .SrtdBy.open .List, .sol-active.sol-selection-top .sol-selection-container, .trsrcbx, .sub-menu, .OptionBx, .wp-pagenavi a, .wp-pagenavi span, .nav-links a, .nav-links span, .tagcloud a {
+    box-shadow: inset 0 0 70px rgba(0, 0, 0, .3), 0 0 20px rgba(0, 0, 0, .5)
+}
+
+.TPost.A {
+    padding: 10px 0;
+}
+
+section > .Top[class*=fa-]:before, section > .Top[class*=AAIco-]:before, article > .Top[class*=fa-]:before, article > .Top[class*=AAIco-]:before {
+    position: absolute;
+    font-size: 1.5625rem;
+    width: 1.5625rem;
+    height: 1.5625rem;
+    left: 0;
+    top: 5px;
+}
+
+section > .Top.AAIco-playlist_play:before, article > .Top.AAIco-playlist_play:before {
+    font-size: 1.2rem;
+    left: 0.5rem;
+}
+
+/* .AAIco-playlist_play:before {
+    font-family: FontAwesome;
+    content: "\f0c9 ";
+} */
+
+/*************************/
+/*          Info         */
+/*************************/
+.app .container {
+    max-width: 1400px;
+}
+
+.main {
+    margin-top: 90px;
+}
+
+.watcher {
+    max-height: 70vh;
+    height: 100%;
+    justify-content: flex-start;
+    background-color: rgb(26, 28, 34);
+}
+
+.video,
+.infor-watching .col__left {
+    width: 72%;
+}
+
+.video video {
+    max-height: 70vh;
+    height: 100%;
+    width: 100%;
+}
+
+.watcher .episodes,
+.infor-watching .col__right {
+    width: 28%;
+}
+
+.watcher .episodes-desc {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.watcher .episodes-title {
+    padding: 20px;
+}
+
+.watcher .episodes-detail {
+    margin-top: 16px;
+    padding-left: 20px;
+}
+
+.episodes-detail .episodes-link {
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    margin-right: 12px;
+    margin-bottom: 12px;
+    text-align: center;
+    line-height: 44px;
+    background: rgb(35, 37, 43);
+    border-radius: 2px;
+    font-size: 16px;
+    color: rgb(236, 236, 236);
+    font-weight: 400;
+}
+
+.episodes-detail .episodes-link.active,
+.episodes-detail .episodes-link:hover {
+    color: var(--main-color);
+}
+
+.infor-watching {
+    margin-top: 24px;
+}
+
+.infor-watching .title-link {
+    font-size: 20px;
+    line-height: 2.5rem;
+    font-weight: 700;
+    margin-right: 10px;
+}
+
+.episode-watching {
+    display: inline-block;
+    margin-left: 6px;
+    color: rgb(169, 169, 172);
+}
+
+.infor-watching .title-link:hover,
+.play-time .more-infor:hover {
+    color: var(--main-color);
+}
+
+.star-icon.active,
+.rating .avg-rate {
+    font-weight: 700;
+    color: var(--main-color);
+}
+
+.user-rate {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgb(130, 131, 135);
+}
+
+.firm-cate span {
+    font-weight: 400;
+}
+
+.play-time {
+    display: flex;
+    margin: 16px 0;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.play-time .more-infor {
+    display: none;
+    margin-left: 12px;
+    cursor: pointer;
+}
+
+.play-time .more-infor.show {
+    display: block;
+    line-height: 24px;
+}
+
+
+.show-more-info {
+    display: none;
+}
+
+.show-more-info .firm-desc {
+    margin: 14px 0;
+}
+
+.show-more-info .firm-desc .prev-text {
+    color: rgb(153, 153, 153);
+}
+
+.idol-wrap .list-idol {
+    display: flex;
+}
+
+.idol-wrap .list-idol img {
+    border-radius: 50%;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    object-fit: contain;
+}
+
+.idol-wrap .list-idol .idol-link {
+    display: block;
+    padding: 0 15px;
+    font-size: 16px;
+    text-align: center;
+    width: 100px;
+}
+
+.idol-wrap .idol-info {
+    width: calc(100% * (1 / 6));
+}
+
+.firm-propose {
+    margin: 40px 0;
+}
+
+.firm-propose .splide__slide .splide__img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.firm-propose .title-category {
+    margin: 20px 0;
+}
+
+.firm-propose .splide__arrow {
+    width: 30px;
+    height: 30px;
+}
+
+/* .firm-propose  */
+.firm-propose .splide__slide:hover .splide__item-title {
+    color: var(--main-color);
+}
+
+.firm-propose .splide__slide:hover .splide__img {
+    /* width: 300px; */
+}
+
+
+.firm-propose .splide__img-wrap {
+    position: relative;
+}
+
+.firm-propose .splide__img-wrap .episodes {
+    position: absolute;
+    left: 10px;
+    bottom: 12px;
+}
+
+.firm-propose .splide__item-title {
+    margin: 8px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.infor-watching .col__left {
+    padding-right: 40px;
+}
+
+.col__right .firm-item-link {
+    width: 100%;
+    cursor: pointer;
+    display: block;
+    padding-left: 20px;
+    font-size: 16px;
+    line-height: 50px;
+    color: rgb(204, 204, 204);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.col__right .firm-item-link.active {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.list-top-firm li:nth-child(-n+3) .rank-index {
+    color: var(--main-color);
+}
+
+.list-top-firm .rank-index {
+    margin-right: 12px;
+    color: rgb(130, 131, 135);
+    font-weight: bold;
+}
+
+.col__right .firm-item-link.active img {
+    margin-top: -6px;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.col__right .firm-item-link img {
+    display: none;
+    width: 116px;
+    margin-left: 22px;
+}
+
+.header {
+    background-color: rgb(10, 12, 15);
+}
+
+.splide__arrow--prev {
+    left: -2.2rem;
+}
+
+.splide__arrow--next {
+    right: -2.2rem;
+}
+
+.app .container {
+    transition: all 0.3s;
+}
+
+
+.episodes-response {
+    display: none;
+    margin-top: 6px;
+    padding: 12px 23px 12px 28px;
+    background-color: rgb(26, 28, 34);
+    border-radius: 6px;
+}
+
+.episodes-response .episodes-desc {
+    display: flex;
+    justify-content: space-between;
+}
+
+.episodes-response .episodes-icon-list {
+    font-size: 18px;
+}
+
+.episodes-response .episodes-detail {
+    margin-top: 18px;
+}
+
+.firm-propose .splide__img-wrap .episodes {
+    font-size: 14px;
+}
+
+.idol-position {
+    font-size: 14px;
+    color: rgb(153, 153, 153);
+}
+
+.idol-name {
+    margin-top: 12px;
+}
+
+.watcher,
+.video video {
+    transition: all 0.5s;
+}
+
+@media screen and (max-width: 1679px) {
+    .app .container {
+        max-width: unset;
+        width: calc(100% - 60 * 2px);
+        margin: 0 60px;
+    }
+
+    .watcher,
+    .video video {
+        max-height: 66vh;
+    }
+
+    .video, .infor-watching .col__left {
+        width: calc(100% - 280px);
+    }
+
+    .watcher .episodes, .infor-watching .col__right {
+        width: 280px;
+    }
+
+    .watcher .episodes-title {
+        padding: 16px;
+    }
+
+    .episodes-desc .range {
+        font-size: 12px;
+    }
+
+    .episodes-detail .episodes-link {
+        width: 40px;
+        height: 40px;
+        margin-right: 8px;
+    }
+
+    .watcher .episodes-detail {
+        padding-left: 16px;
+    }
+
+    .rank-firm .title,
+    .info-detail .title {
+        font-size: 24px;
+    }
+
+    .firm-propose .title-category,
+    .show-more-info h2 {
+        font-size: 22px;
+    }
+
+    .firm-cate span {
+        font-size: 12px;
+    }
+
+    .show-more-info .firm-desc,
+    .play-time .more-infor {
+        font-size: 14px;
+    }
+
+
+}
+
+@media (max-width: 1199px) {
+    .firm-propose .splide__slide .splide__img {
+        height: 190px;
+    }
+
+    .watcher,
+    .video video {
+        max-height: 60vh;
+    }
+}
+
+@media (max-width: 1024px) {
+
+    .idol-wrap .idol-info {
+        width: calc(100% * (1 / 5));
+    }
+
+
+    .watcher,
+    .video video {
+        max-height: 56vh;
+    }
+
+    .col__left {
+        margin-top: 12px;
+    }
+
+    .watcher .episodes,
+    .col__right .firm-item-link.active img,
+    .episodes-title {
+        display: none;
+    }
+
+    .episodes-response {
+        display: block;
+    }
+
+    .video, .infor-watching .col__left {
+        width: 100%;
+    }
+
+    .app .container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .app .container:first-child .row:not(:first-child) {
+        margin: 0 50px;
+    }
+
+    .infor-watching .col__left {
+        padding: 0;
+    }
+
+    .firm-propose .splide__slide .splide__img {
+        height: 270px;
+    }
+
+    .episodes-detail .episodes-link {
+        margin-right: 12px;
+    }
+
+    .play-time,
+    .firm-propose .splide__img-wrap .episodes {
+        font-size: 12px;
+    }
+
+    .idol-name,
+    .firm-propose .splide__item-title,
+    .col__right .firm-item-link {
+        font-size: 14px;
+    }
+
+    .watcher .episodes, .infor-watching .col__right {
+        width: 100%;
+    }
+
+    .list-top-firm {
+        max-height: 200px;
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+    .list-top-firm .firm-item {
+        display: block;
+        -webkit-box-flex: 0;
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: calc((100vw - 100px) / 2);
+    }
+
+    .col__right .firm-item-link {
+        line-height: 40px;
+    }
+
+
+}
+
+@media (max-width: 991px) {
+
+    .firm-propose .splide__slide .splide__img {
+        height: 230px;
+    }
+
+    .watcher,
+    .video video {
+        max-height: 50vh;
+    }
+}
+
+@media (max-width: 800px) {
+    .watcher,
+    .video video {
+        max-height: 46vh;
+    }
+
+    .idol-wrap .idol-info {
+        width: calc(100% * (1 / 4));
+    }
+}
+
+@media (max-width: 768px) {
+    .app .container:first-child .row:not(:first-child) {
+        margin: 0 15px;
+    }
+
+    .watcher,
+    .video video {
+        max-height: 42vh;
+    }
+
+    .rank-firm .title, .info-detail .title,
+    .firm-propose .title-category, .show-more-info h2 {
+        font-size: 20px;
+    }
+
+    .splide__arrow svg {
+        width: 14px;
+        height: 27px;
+    }
+
+    .splide__arrow--prev {
+        left: -0.8rem;
+    }
+
+    .splide__arrow--next {
+        right: -0.8rem;
+    }
+
+    .firm-propose .splide__arrow {
+        width: 14px;
+        height: 30px;
+    }
+
+    .splide__arrow {
+        top: 42%
+    }
+
+    .col__right .firm-item-link {
+        line-height: 40px;
+    }
+
+    .idol-name,
+    .col__right .firm-item-link,
+    .play-time .more-infor.show {
+        font-size: 12px;
+    }
+
+    .list-top-firm .firm-item {
+        width: 100%
+    }
+
+    .list-top-firm {
+        max-height: unset;
+    }
+
+    .episodes-response {
+        padding: 12px 18px 12px 22px;
+    }
+}
+
+@media (max-width: 640px) {
+    .watcher,
+    .video video {
+        max-height: 45vh;
+    }
+}
+
+@media (max-width: 585px) {
+
+    .firm-propose .splide__slide .splide__img {
+        height: 200px;
+    }
+}
+
+@media (max-width: 500px) {
+    .firm-propose .splide__slide .splide__img {
+        height: 190px;
+    }
+}
+
+@media (max-width: 480px) {
+    .firm-propose .splide__slide .splide__img {
+        height: 175px;
+    }
+}
+
+@media (max-width: 385px) {
+    .firm-propose .splide__slide .splide__img {
+        height: 160px;
+    }
+}
+
+.info-detail .title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.Modal-Close {
+    position: absolute;
+    top: -.5rem;
+    right: -.5rem;
+    height: 2rem;
+    width: 2rem;
+    text-align: center;
+    line-height: 2rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: .2s;
+    padding: 0;
+}
+.intl-play-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.intl-play-left {
+    flex: 7;
+}
+
+.intl-play-right {
+    flex: 3;
+    background: rgb(26, 28, 34);
+    max-height: 448px;
+    overflow-y: auto;
+    /* 3 parts */
+}
+
+@media (max-width: 768px) {
+    .intl-play-container {
+        flex-direction: column;
+    }
+
+    .intl-play-left,
+    .intl-play-right {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .AZList > li {
+        padding: 3px
+    }
+    .intl-play-time {
+        display: block !important;
+        font-size: 14px;
+        font-weight: 700;
+    }
+}
+.AZList > li > a.active {
+    color: rgb(28, 199, 73);
+    background-color: #23252b;
+    font-size: 15px;
+}
+.w-full{
+    margin-top: 10px;
+}
+.pt-2{
+    padding-top: .5rem;
+}
+.font-medium {
+    font-weight: 500;
+}
+.text-sm {
+    font-size: .875rem;
+    line-height: 1.25rem;
+}
+.pb-2 {
+    padding-bottom: .5rem;
+}
+.gap-2 {
+    gap: .5rem;
+}
+.justify-center {
+    justify-content: center;
+}
+.flex-wrap {
+    flex-wrap: wrap;
+}
+.min-h-\[50px\] {
+    min-height: 50px;
+}
+.text-gray-300 {
+    --tw-text-opacity: 1;
+    color: #d1d5db;
+    color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+.text-xs {
+    font-size: .75rem;
+    line-height: 1rem;
+}
+.px-2 {
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+.bg-black {
+    --tw-bg-opacity: 1;
+    background-color: #000;
+    background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+.border-zinc-700 {
+    --tw-border-opacity: 1;
+    border-color: #3f3f46;
+    border-color: rgb(63 63 70 / var(--tw-border-opacity));
+}
+.border {
+    border-width: 1px;
+}
+.rounded {
+    border-radius: .25rem;
+}
+.bg-zinc-800 {
+    --tw-bg-opacity: 1;
+    background-color: #27272a;
+    background-color: rgb(39 39 42 / var(--tw-bg-opacity));
+}
+.flex{
+    display: flex;
+}
+.border-zinc-700 {
+    --tw-border-opacity: 1;
+    border-color: #3f3f46;
+    border-color: rgb(63 63 70 / var(--tw-border-opacity));
+}
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+.focus-item-label-original{
+    background-image: linear-gradient(90deg, rgb(0, 214, 57) 0%, rgb(0, 194, 52) 100%);
+    padding: 0px 4px;
+    border-radius: 2px;
+    font-weight: 700;
+    font-size: 14px;
+}
+.broken-line{
+    margin: 0px 6px;
+}
+.intl-play-time{
+    display: flex;
+    font-size: 14px;
+    font-weight: 700;
+}
+.intl-play-item-tags {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    height: 20px;
+    margin: 12px 0px;
+    font-size: 12px;
+    line-height: 14px;
+    color: rgb(236, 236, 236);
+    font-weight: 400;
+    text-shadow: rgba(0, 0, 0, 0.5) 0px 1px 2px;
+}
+.intl-play-item-tags span {
+    display: inline-block;
+    margin-right: 8px;
+    padding: 3px 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+}
+.banner-content__desc .more-info {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(28, 199, 73);
+    cursor: pointer;
+    text-align: right;
+    text-shadow: rgba(0, 0, 0, 0.7) 1px 1px 0px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    background: rgb(17, 19, 25);
+    padding-left: 20px;
+}
+.banner-content__desc{
+    position: relative;
+}
+
+.firm-desc{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.modal-footer .btn-default{
+    background-color: #3a3c3c;
+}
