@@ -25,7 +25,6 @@
     <!-- Page style -->
     <link rel='stylesheet' href='/themes/iq/css/dashboard/index.css?ver=1.0.1' type='text/css' />
     <link rel='stylesheet' href='/themes/iq/css/list.css?ver=1.0.1' type='text/css' />
-
 @endpush
 
 @section('body')
@@ -38,6 +37,93 @@
 @endsection
 
 @section('footer')
+    <style>
+        @media screen and (min-width: 768px) and (max-width: 1679px) {
+            .dJvLcv {
+                padding-bottom: 30px;
+            }
+        }
+
+        .dJvLcv {
+            z-index: auto;
+            width: 100%;
+            top: 0px;
+            vertical-align: middle;
+            background: rgb(10, 12, 15);
+            border-top: 1px solid rgb(45, 47, 52);
+            transition: background-color 0.5s linear;
+            color: rgb(221, 221, 221);
+            font-size: 14px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 40px;
+        }
+        .dJvLcv .footer-inner {
+    width: 904px;
+    height: 100%;
+    margin: 0px auto;
+    position: relative;
+}
+.dJvLcv .multiport-show .multiport-title {
+    font-size: 20px;
+    line-height: 20px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-weight: 700;
+    margin-top: 32px;
+}
+.dJvLcv .multiport-show .multiport-desc {
+    font-size: 12px;
+    color: rgb(169, 169, 172);
+    font-weight: 400;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    height: 12px;
+    line-height: 24px;
+    margin-top: 16px;
+}
+.dJvLcv .footer-donwload-img {
+    width: 48px;
+}
+.dJvLcv .multiport-show .multiport-content {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin: 32px auto;
+}
+@media screen and (min-width: 1024px) and (max-width: 1679px) {
+    .dJvLcv .multiport-show .multiport-content .multiport-pca {
+        margin-right: 100px;
+    }
+}
+.dJvLcv .multiport-show .multiport-content .multiport-pca {
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin-right: 120px;
+}
+.dJvLcv .multiport-show .multiport-content > div {
+    background: rgb(35, 37, 43);
+    border-radius: 4px;
+    min-width: 132px;
+    padding: 8px 12px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.dJvLcv .multiport-show .multiport-content .multiport-pca svg {
+    width: 20px;
+    height: 20px;
+}
+.dJvLcv .multiport-show .multiport-content .multiport-pca > span {
+    margin-left: 4px;
+}
+    </style>
     @if (get_theme_option('ads_catfish'))
         <div id="catfish" style="width: 100%;position:fixed;bottom:0;left:0;z-index:222" class="mp-adz">
             <div style="margin:0 auto;text-align: center;overflow: visible;" id="container-ads">
@@ -50,26 +136,6 @@
             </div>
         </div>
     @endif
-
-    <script type="text/javascript" id='funciones_public_sol-js-extra'>
-        var toroflixPublic = {
-            "url": "/",
-            "nonce": "7a0fde296e",
-            "trailer": "",
-            "noItemsAvailable": "No entries found",
-            "selectAll": "Select all",
-            "selectNone": "Select none",
-            "searchplaceholder": "Click here to search",
-            "loadingData": "Still loading data...",
-            "viewmore": "View more",
-            "id": "",
-            "type": "",
-            "report_text_reportForm": "Report Form",
-            "report_text_message": "Message",
-            "report_text_send": "SEND",
-            "report_text_has_send": "the report has been sent",
-            "playerAutomaticSlider": "1"
-        };
     </script>
 
     {!! get_theme_option('footer') !!}
@@ -78,7 +144,7 @@
     <script src='/themes/iq/plugins/bootstrap/js/bootstrap.bundle.min.js?ver=1.0.1'></script>
     <script src='/themes/iq/js/functions.js?ver=1.0.1'></script>
     <script src='/themes/iq/js/main.js?ver=1.0.1'></script>
-    <script type="text/javascript" id='funciones_public_sol-js-extra'>
+    {{-- <script type="text/javascript" id='funciones_public_sol-js-extra'>
         var toroflixPublic = {
             "url": "/",
             "nonce": "7a0fde296e",
@@ -97,21 +163,12 @@
             "report_text_has_send": "the report has been sent",
             "playerAutomaticSlider": "1"
         };
-    </script>
+    </script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <!-- Page script -->
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script src="/themes/iq/js/config-splide.js?ver=1.0.1"></script>
 
-    {{-- <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    <script src="/themes/iq/static/js/config-splide.js?ver=1.0.1"></script>
-    <script src='/themes/iq/static/js/jquery.js?ver=3.0.0'></script>
-    <script src='/themes/iq/static/js/splide.min.js?ver=1.0.1'></script>
-    <script src='https://dongphim.ink/themes/iqiyi/plugins/bootstrap/js/bootstrap.bundle.min.js?ver=1.0.1'></script>
-    <script src='https://dongphim.ink/themes/iqiyi/js/functions.js?ver=1.0.1'></script>
-    <script src='https://dongphim.ink/themes/iqiyi/js/main.js?ver=1.0.1'></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script> --}}
     <div id="fb-root"></div>
 
     <script>
@@ -167,7 +224,8 @@
                             results +=
                                 '<a class="lists-item hotSearch-item" href="' +
                                 element["url"] + '" title="' + element["name"] +
-                                ' class="ajax-thumb""><i>' + (i + 1) + '</i><span>' + element["name"] +'</span></a>';;
+                                ' class="ajax-thumb""><i>' + (i + 1) + '</i><span>' + element["name"] +
+                                '</span></a>';;
                         }
                         results +=
                             '<li class="ss-bottom" style="padding: 0;border-bottom: none;display: block;width: 100%;height: 40px;line-height: 40px; background: #f44336; color: #fff; font-weight: 700;text-align: center;"><a href="/?search=' +

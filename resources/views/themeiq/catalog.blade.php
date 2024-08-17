@@ -18,7 +18,7 @@
         <main class="types.movies.index">
             <section class="breadcrumb">
                 <div class="wrap-breadcrumb"
-                    style="background: url(https://dongphim.ink/themes/iqiyi/img/collection-bg-nomal.png) left center / cover no-repeat;">
+                    style="background: url(/themes/iq/collection-bg-nomal.png) left center / cover no-repeat;">
                     <h2 class="title-category">{{ $section_name }}</h2>
                 </div>
 

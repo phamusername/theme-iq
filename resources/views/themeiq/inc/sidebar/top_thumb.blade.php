@@ -1,4 +1,4 @@
-<div class="myui-panel myui-panel-bg clearfix">
+{{-- <div class="myui-panel myui-panel-bg clearfix">
     <div class="myui-panel-box clearfix">
         <div class="myui-panel_hd">
             <div class="myui-panel__head active clearfix">
@@ -27,4 +27,18 @@
             </ul>
         </div>
     </div>
+</div> --}}
+<div class="rank-firm">
+    <h2 class="rank-title">{{ $top['label'] }}</h2>
+    <ul class="list-top-firm">
+        @foreach ($top['data'] as $key => $movie)
+        <li class="firm-item">
+            <a href="{{$movie->getUrl()}}" class="firm-item-link {{ $loop->iteration === 1 ? 'active' : '' }}">
+                <span class="rank-index">{{ $loop->iteration }}</span>
+                {{$movie->name}}
+                <img src="{{$movie->getPosterUrl()}}" alt="{{$movie->name}}">
+            </a>
+        </li>
+        @endforeach
+    </ul>
 </div>

@@ -60,13 +60,7 @@
                         </button>
                         <span class="line"></span>
                     </form>
-                    <div class="search-suggest search-list-container">
-                        <div class="hotSearch-title">Tìm kiếm hot</div>
-                        <a href="" class="lists-item hotSearch-item">
-                            <i>1</i>
-                            <span>Tứ Hải Trọng Minh</span>
-                        </a>
-                    </div>
+                    <div class="search-suggest search-list-container" style="display: none"></div>
                 </div>
             </div>
         </div>
@@ -102,25 +96,15 @@
     @media (max-width: 768px) {
         .dropdown-nav {
             display: none;
-            /* Hide dropdowns by default */
             flex-wrap: wrap;
-            /* Allow items to wrap to the next line */
             padding: 0;
-            /* Remove default padding */
             margin: 0;
-            /* Remove default margin */
             list-style: none;
-            /* Remove bullet points */
             position: absolute;
-            /* Position it absolutely */
             background: white;
-            /* Background color for dropdown */
             z-index: 1000;
-            /* Ensure it appears above other content */
             width: 100%;
-            /* Full width of the parent */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            /* Optional shadow for dropdown */
         }
 
         .dropdown-nav.active {

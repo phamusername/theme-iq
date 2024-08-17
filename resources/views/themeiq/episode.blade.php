@@ -1,6 +1,10 @@
 @extends('themes::themeiq.layout')
 
 @push('header')
+    <script>
+        const ROUTE_REPORT_ERROR =
+            '{{ route('episodes.report', ['movie' => $currentMovie->slug, 'episode' => $episode->slug, 'id' => $episode->id]) }}';
+    </script>
     <link rel='stylesheet' href='/themes/iq/css/details/play2.css' type='text/css' />
 @endpush
 @section('content')
@@ -11,17 +15,69 @@
                     <div class="VideoPlayer">
                         <div style="display:flex; aspect-ratio: 16 / 9;" id="player-loaded"></div>
                     </div>
-                    <div class="basis-2/4 text-center pt-2">
-                        <span class="text-sm font-medium pb-2 block uppercase">Đổi Server (Nếu Lag)</span>
-                        <div class="flex flex-row flex-wrap gap-2 items-center justify-center">
-                            @foreach ($currentMovie->episodes->where('slug', $episode->slug)->where('server', $episode->server) as $server)
-                                <a onclick="chooseStreamingServer(this)" data-type="{{ $server->type }}"
-                                    data-id="{{ $server->id }}" data-link="{{ $server->link }}"
-                                    style="text-decoration: none; border-color: rgb(63 63 70) !important; cursor: pointer;"
-                                    class="streaming-server hover:cursor-pointer text-gray-300 border border-zinc-700 px-2 py-2 text-xs font-medium rounded">Server
-                                    {{ $loop->iteration }}
-                                </a>
-                            @endforeach
+                    <div id="overlay" class="overlay hidden"></div>
+                    <div class="flex justify-between items-start pt-2">
+                        <div class="basis-1/4">
+                            <div class="flex justify-start mr-1">
+                                <button type="button" title="Phóng to" style="display: none; margin-right: 0.25rem"
+                                    class="items-center bg-zinc-800 hover:opacity-80 px-2 py-1 text-xs font-medium leading-6 text-center text-gray-200 transition rounded shadow ripple hover:shadow-lg focus:outline-none waves-effect lg:flex hidden">
+                                    <svg class="h-6 w-6" version="1.1" viewBox="0 0 36 36" width="100%">
+                                        <use class="ytp-svg-shadow" xlink:href="#ytp-id-124"></use>
+                                        <path d="m 28,11 0,14 -20,0 0,-14 z m -18,2 16,0 0,10 -16,0 0,-10 z" fill="#fff"
+                                            fill-rule="evenodd" id="ytp-id-124"></path>
+                                    </svg>
+                                    <span class="pl-1 hidden lg:block">Phóng to</span>
+                                </button>
+                                <button id="report_error" type="button" title="Báo lỗi"
+                                    class="flex items-center bg-zinc-800 hover:opacity-80 px-2 py-1 ml-1 text-xs font-medium leading-6 text-center text-gray-200 transition rounded shadow ripple hover:shadow-lg focus:outline-none waves-effect">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-1">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5">
+                                        </path>
+                                    </svg>
+                                    <span>Báo Lỗi</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="basis-2/4 text-center pt-2">
+                            <span class="text-sm font-medium pb-2 block uppercase">Đổi Server (Nếu Lag)</span>
+                            <div class="flex flex-row flex-wrap gap-2 items-center justify-center">
+                                @foreach ($currentMovie->episodes->where('slug', $episode->slug)->where('server', $episode->server) as $server)
+                                    <a onclick="chooseStreamingServer(this)" data-type="{{ $server->type }}"
+                                        data-id="{{ $server->id }}" data-link="{{ $server->link }}"
+                                        style="text-decoration: none; border-color: rgb(63 63 70) !important; cursor: pointer;"
+                                        class="streaming-server hover:cursor-pointer text-gray-300 border border-zinc-700 px-2 py-2 text-xs font-medium rounded">Server
+                                        {{ $loop->iteration }}
+                                    </a>
+                                @endforeach
+                            </div>
+                            <center style="margin-top: 10px; display: none" id="episode_error">
+                                <input style="margin-bottom: 10px" type="text" name="error_message"
+                                    placeholder="Điền chi tiết lỗi">
+                                <input type="button" id="error_send" value="Gửi">
+                            </center>
+                        </div>
+                        <div class="basis-1/4">
+                            <div class="flex justify-end mr-1">
+                                <button id="toggle-dark-mode" type="button" title="Tắt/Bật đèn"
+                                    class="text-gray-200 z-30 mr-1 flex items-center bg-zinc-800 hover:opacity-80 px-2 py-1 text-xs font-medium leading-6 text-center transition rounded shadow ripple hover:shadow-lg focus:outline-none waves-effect">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="{2}"
+                                            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
+                                        </path>
+                                    </svg>
+                                    <span class="hidden lg:block">Tắt đèn</span>
+                                </button>
+                                <button id="next" type="button" title="Tập tiếp"
+                                    class="flex items-center bg-zinc-800 hover:opacity-80 px-2 py-1 text-xs font-medium leading-6 text-center text-gray-200 transition rounded shadow ripple hover:shadow-lg focus:outline-none waves-effect"><svg
+                                        xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokelinecap="round" strokelinejoin="round" strokewidth="{2}"
+                                            d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
+                                    </svg><span class="pl-1 hidden lg:block">Tập Tiếp</span></button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -31,13 +87,12 @@
                             <div class="Top AAIco-playlist_play AALink episodes-view episodes-load">
                                 <div class="Title">Danh sách tập</div>
                                 <center style="padding:10px">
-                                    <input type="text" id="searchBox"
-                                        placeholder="Tìm tập phim..."
+                                    <input type="text" id="searchBox" placeholder="Tìm tập phim..."
                                         style="background: 0 0; border: 1px solid #fff; height: 32px; width: 200px; padding: 5px; color:#fff; border-radius: 3px !important">
                                 </center>
                                 <div class="loading-placeholder"></div>
                             </div>
-                            <ul class="AZList">
+                            <ul class="AZList" id="episodes">
                                 @foreach ($currentMovie->episodes->groupBy('server') as $server => $data)
                                     <div class="w-full">
                                         <h3>{{ $server }}</h3>
@@ -156,7 +211,7 @@
                                             ? $currentMovie->actors->map(function ($actor) {
                                                     return '<span class="tt-at"><a href="' .
                                                         $actor->getUrl() .
-                                                        '" tite="Đạo diễn ' .
+                                                        '" tite="Diễn viên ' .
                                                         $actor->name .
                                                         '">' .
                                                         $actor->name .
@@ -180,6 +235,7 @@
                                             .fb-comments {
                                                 width: 100% !important;
                                             }
+
                                             .fb-comments iframe[style] {
                                                 width: 100% !important;
                                             }
@@ -195,11 +251,15 @@
                                         }
                                     </style>
                                     <div style="color:red;font-weight:bold;padding:5px">
-                                        Lưu ý các bạn không nên nhấp vào các đường link ở phần bình luận, kẻ gian có thể đưa virut vào thiết bị hoặc hack mất facebook của các bạn.
+                                        Lưu ý các bạn không nên nhấp vào các đường link ở phần bình luận, kẻ gian có thể đưa
+                                        virut vào thiết bị hoặc hack mất facebook của các bạn.
                                     </div>
-                                    <div data-order-by="reverse_time" id="commit-99011102" class="fb-comments" data-href="{{ $currentMovie->getUrl() }}" data-width="" data-numposts="10"></div>
+                                    <div data-order-by="reverse_time" id="commit-99011102" class="fb-comments"
+                                        data-href="{{ $currentMovie->getUrl() }}" data-width="" data-numposts="10">
+                                    </div>
                                     <script>
-                                        document.getElementById("commit-99011102").dataset.width = document.querySelector('.info-detail').clientWidth; // Set width based on col__left
+                                        document.getElementById("commit-99011102").dataset.width = document.querySelector('.info-detail')
+                                            .clientWidth; // Set width based on col__left
                                     </script>
                                 </div>
                             </div>
@@ -231,9 +291,9 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="col__right">
+                        <div class="col__right">
                             @include('themes::themeiq.sidebar')
-                        </div> --}}
+                        </div>
                     </div>
                 </main>
             </div>
@@ -242,90 +302,12 @@
 @endsection
 
 @push('scripts')
-    {{-- <script>
-        $(document).ready(function() {
-            const splideByCate = new Splide(".idol-wrap .splide", {
-                // Optional parameters
-                start: 0,
-                perPage: 5,
-                perMove: 1,
-                gap: 14,
-                type: "slide",
-                drag: "free",
-                snap: true,
-                arrows: true,
-                lazyLoad: true,
-                pagination: false,
-
-                // Responsive breakpoint
-                breakpoints: {
-                    1679: {
-                        perPage: 6,
-
-                    },
-                    1480: {
-                        perPage: 5,
-
-                    },
-                    1200: {
-                        perPage: 4,
-
-                    },
-                    768: {
-                        perPage: 3,
-                    }
-                }
-            });
-
-            splideByCate.mount();
-
-            $('.list-top-firm .firm-item-link').hover(function() {
-                $('.list-top-firm .firm-item-link.active').removeClass('active');
-                $(this).addClass('active');
-            })
-
-            function swapEpisode() {
-                let windowWidth = $(window).width();
-                if (windowWidth <= 1024) {
-                    let episode = $('.watcher .episodes').html();
-                    $('.episodes-response').html(episode);
-                } else {
-                    let episode = $('.episodes-response').html();
-                    if (episode.trim().length !== 0) {
-                        $('.watcher .episodes').html(episode);
-                    }
-                }
-            }
-
-            swapEpisode();
-            $(window).on("resize", function() {
-                swapEpisode();
-            })
-
-            var hiddenElement = $(".BtnLight.AAIco-lightbulb_outline");
-
-            function hideElementF() {
-                hiddenElement.hide();
-            }
-
-            function showElementF() {
-                hiddenElement.show();
-            }
-
-            $(document).ready(function() {
-                setInterval(hideElementF, 5000); // Hide element every 5 seconds
-
-                $(document).on('click', function() {
-                    showElementF();
-                    clearTimeout(autoHideTimeout);
-                    autoHideTimeout = setTimeout(hideElementF, 5000);
-                });
-
-                var autoHideTimeout = setTimeout(hideElementF, 5000);
-            });
-        })
-        console.log('Design by: @gggforyou')
-    </script> --}}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
+        integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"
+        integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $(document).ready(function() {
             const splideByCate = new Splide(".firm-propose .splide", {
@@ -368,50 +350,48 @@
                 $(this).addClass('active');
             })
 
-            function swapEpisode() {
-                let windowWidth = $(window).width();
-                if (windowWidth <= 1024) {
-                    let episode = $('.watcher .episodes').html();
-                    $('.episodes-response').html(episode);
-                } else {
-                    let episode = $('.episodes-response').html();
-                    if (episode.trim().length !== 0) {
-                        $('.watcher .episodes').html(episode);
-                    }
-                }
-            }
+            // function swapEpisode() {
+            //     let windowWidth = $(window).width();
+            //     if (windowWidth <= 1024) {
+            //         let episode = $('.watcher .episodes').html();
+            //         $('.episodes-response').html(episode);
+            //     } else {
+            //         let episode = $('.episodes-response').html();
+            //         if (episode.trim().length !== 0) {
+            //             $('.watcher .episodes').html(episode);
+            //         }
+            //     }
+            // }
 
-            swapEpisode();
-            $(window).on("resize", function() {
-                swapEpisode();
-            })
+            // swapEpisode();
+            // $(window).on("resize", function() {
+            //     swapEpisode();
+            // })
 
-            var hiddenElement = $(".BtnLight.AAIco-lightbulb_outline");
+            // var hiddenElement = $(".BtnLight.AAIco-lightbulb_outline");
 
-            function hideElementF() {
-                hiddenElement.hide();
-            }
+            // function hideElementF() {
+            //     hiddenElement.hide();
+            // }
 
-            function showElementF() {
-                hiddenElement.show();
-            }
+            // function showElementF() {
+            //     hiddenElement.show();
+            // }
 
-            $(document).ready(function() {
-                setInterval(hideElementF, 5000); // Hide element every 5 seconds
+            // $(document).ready(function() {
+            //     setInterval(hideElementF, 5000); // Hide element every 5 seconds
 
-                $(document).on('click', function() {
-                    showElementF();
-                    clearTimeout(autoHideTimeout);
-                    autoHideTimeout = setTimeout(hideElementF, 5000);
-                });
+            //     $(document).on('click', function() {
+            //         showElementF();
+            //         clearTimeout(autoHideTimeout);
+            //         autoHideTimeout = setTimeout(hideElementF, 5000);
+            //     });
 
-                var autoHideTimeout = setTimeout(hideElementF, 5000);
-            });
+            //     var autoHideTimeout = setTimeout(hideElementF, 5000);
+            // });
         })
         console.log('Design by: @gggforyou')
     </script>
-
-    {{-- <link rel='stylesheet' href='/themes/iq/css/demo.css' type='text/css' /> --}}
     <script src="/themes/iq/js/details.js?ver=1.0.1"></script>
     <script type="text/javascript" src="/themes/iq/js/util.js"></script>
     <script src="/themes/iq/static/player/skin/juicycodes.js"></script>
@@ -721,5 +701,64 @@
             }
 
         }
+    </script>
+    <script type="module">
+        function next() {
+            const activeLink = $("#episodes .active");
+            const nextLink = activeLink.closest("li").next("li").find("a"); // Find the next anchor
+
+            if (nextLink.length) {
+                activeLink.removeClass('active');
+                nextLink.addClass('active')[0].click();
+            }
+        }
+
+        // function prev() {
+        //     const activeLink = $("#episodes .active");
+        //     const prevLink = activeLink.closest("li").prev("li").find("a"); // Find the previous anchor
+
+        //     if (prevLink.length) {
+        //         activeLink.removeClass('active');
+        //         prevLink.addClass('active')[0].click();
+        //     }
+        // }
+
+        // $("#prev").click(prev);
+        $("#next").click(next);
+    </script>
+    <script>
+        $("#report_error").click(function() {
+            if ($("#episode_error").css('display') != 'block') {
+                $("#episode_error").css('display', 'block')
+            } else {
+                $("#episode_error").css('display', 'none')
+            }
+        })
+        $("input#error_send").click(function() {
+            console.log(123);
+            let error_message = $("input[name=error_message]").val();
+            fetch(ROUTE_REPORT_ERROR, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                        'content')
+                },
+                body: JSON.stringify({
+                    message: error_message
+                })
+            });
+            $.toast({
+                heading: 'Thông báo',
+                text: 'Phản hồi của bạn đã được gửi đi!',
+                position: 'bottom-right',
+                icon: 'info',
+                loader: true,
+                loaderBg: '#9EC600',
+                bgColor: '#212121',
+                textColor: 'white'
+            })
+            $("#episode_error").remove();
+        })
     </script>
 @endpush
