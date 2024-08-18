@@ -29,11 +29,11 @@
             <section class="list-item">
                 @foreach ($data as $key => $movie)
                     @php
-                            $xClass = 'item';
-                            if ($key === 0 || $key % 4 === 0) {
-                                $xClass .= ' no-margin-left';
-                            }
-                        @endphp
+                        $xClass = 'item';
+                        if ($key === 0 || $key % 4 === 0) {
+                            $xClass .= ' no-margin-left';
+                        }
+                    @endphp
 
                     @include('themes::themeiq.inc.catalog_sections_movies_item')
                 @endforeach
@@ -94,5 +94,10 @@
         border: 1px solid #383838;
         color: #fafafa;
         font-size: 14px;
+    }
+
+    .filter-box .row>div {
+        margin-bottom: 10px;
+        margin-right: 10px
     }
 </style>

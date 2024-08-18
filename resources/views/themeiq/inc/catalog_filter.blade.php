@@ -1,6 +1,6 @@
 <form id="form-filter" method="GET" action="/">
     <div class="filter-box mt-3">
-        <div class="row">
+        <div class="row" style="justify-content: center">
             <div class="col-lg-4 col-xs-6">
                 <select name="filter[sort]" form="form-filter" class="input form-control" id="order">
                     <option value="">Sắp xếp</option>
