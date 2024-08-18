@@ -299,6 +299,7 @@
             </div>
         </div>
     </div>
+    <div id="light-overlay"></div>
 @endsection
 
 @push('scripts')
@@ -344,53 +345,36 @@
             });
 
             splideByCate.mount();
-
-            $('.list-top-firm .firm-item-link').hover(function() {
-                $('.list-top-firm .firm-item-link.active').removeClass('active');
-                $(this).addClass('active');
-            })
-
-            // function swapEpisode() {
-            //     let windowWidth = $(window).width();
-            //     if (windowWidth <= 1024) {
-            //         let episode = $('.watcher .episodes').html();
-            //         $('.episodes-response').html(episode);
-            //     } else {
-            //         let episode = $('.episodes-response').html();
-            //         if (episode.trim().length !== 0) {
-            //             $('.watcher .episodes').html(episode);
-            //         }
-            //     }
-            // }
-
-            // swapEpisode();
-            // $(window).on("resize", function() {
-            //     swapEpisode();
-            // })
-
-            // var hiddenElement = $(".BtnLight.AAIco-lightbulb_outline");
-
-            // function hideElementF() {
-            //     hiddenElement.hide();
-            // }
-
-            // function showElementF() {
-            //     hiddenElement.show();
-            // }
-
-            // $(document).ready(function() {
-            //     setInterval(hideElementF, 5000); // Hide element every 5 seconds
-
-            //     $(document).on('click', function() {
-            //         showElementF();
-            //         clearTimeout(autoHideTimeout);
-            //         autoHideTimeout = setTimeout(hideElementF, 5000);
-            //     });
-
-            //     var autoHideTimeout = setTimeout(hideElementF, 5000);
-            // });
         })
         console.log('Design by: @gggforyou')
+        $(document).ready(function() {
+            let isDarkMode = false; // Track the state of dark mode
+
+            $('#toggle-dark-mode').on('click', function() {
+                if (isDarkMode) {
+                    // Revert to original state
+                    $('.intl-play-left').css({
+                        'z-index': '',
+                        'position': ''
+                    });
+                    $('#light-overlay').replaceWith(`
+                <div id="light-overlay" style="display: none;"></div>
+            `);
+                    $(this).find('span').text('Tắt đèn'); // Change button text to "Tắt đèn"
+                } else {
+                    // Apply dark mode styles
+                    $('.intl-play-left').css({
+                        'z-index': '1000',
+                        'position': 'relative'
+                    });
+                    $('#light-overlay').replaceWith(`
+                <div id="light-overlay" style="position: fixed; z-index: 999; background-color: rgb(0, 0, 0); opacity: 0.98; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden;"></div>
+            `);
+                    $(this).find('span').text('Bật đèn'); // Change button text to "Bật đèn"
+                }
+                isDarkMode = !isDarkMode; // Toggle the state
+            });
+        });
     </script>
     <script src="/themes/iq/js/details.js?ver=1.0.1"></script>
     <script type="text/javascript" src="/themes/iq/js/util.js"></script>

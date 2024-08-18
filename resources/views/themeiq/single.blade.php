@@ -19,6 +19,10 @@
     }
 @endphp
 
+@push('scripts')
+<script src="/themes/iq/js/details.js?ver=1.0.1"></script>
+@endpush
+
 @section('content')
     <link rel='stylesheet' href='/themes/iq/css/details/index.css?ver=1.0.1' type='text/css' />
     <section class="banner">
@@ -61,20 +65,20 @@
                                         $category->getUrl() .
                                         '" tite="' .
                                         $category->name .
-                                        '"><span>' .
+                                        '"><span class="type-style">' .
                                         $category->name .
                                         '</span></a>';
-                                })->implode(', ') !!}
+                                })->implode('') !!}
                             {!! $currentMovie->regions->map(function ($region) {
                                     return '<a href="' .
                                         $region->getUrl() .
                                         '" tite="' .
                                         $region->name .
-                                        '"><span>' .
+                                        '"><span class="type-style">' .
                                         $region->name .
                                         '</span></a>';
-                                })->implode(', ') !!}
-                            <a><span>{{ $currentMovie->language }}</span></a>
+                                })->implode('') !!}
+                            <a><span class="type-style">{{ $currentMovie->language }}</span></a>
                         </div>
                         <div class="focus-info-tag">
                             <span class="key">Đạo diễn:</span>

@@ -118,7 +118,7 @@
     <script src='/themes/iq/js/jquery.js?ver=3.0.0'></script>
     <script src='/themes/iq/js/splide.min.js?ver=1.0.1'></script>
     <script src='/themes/iq/plugins/bootstrap/js/bootstrap.bundle.min.js?ver=1.0.1'></script>
-    <script src='/themes/iq/js/functions.js?ver=1.0.1'></script>
+    {{-- <script src='/themes/iq/js/functions.js?ver=1.0.1'></script> --}}
     <script src='/themes/iq/js/main.js?ver=1.0.1'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <!-- Page script -->
