@@ -49,8 +49,8 @@
                                     <a href="{{ $movie->getUrl() }}" tabindex="-1">Đạo
                                         diễn:
                                     </a>
-                                    {!! count($currentMovie->directors)
-                                        ? $currentMovie->directors->map(function ($director) {
+                                    {!! count($movie->directors)
+                                        ? $movie->directors->map(function ($director) {
                                                 return '<a href="' .
                                                     $director->getUrl() .
                                                     '" tite="Đạo diễn ' .
@@ -62,11 +62,11 @@
                                         : 'Đang cập nhật' !!}
                                 </div>
                                 <div class="crs-content__category">Thể loại:
-                                    {!! $currentMovie->categories->map(function ($category) {
+                                    {!! $movie->categories->map(function ($category) {
                                         return '<a href="' . $category->getUrl() . '" tite="' . $category->name . '">' . $category->name . '</a>';
                                     })->implode(', ') !!}
                                 </div>
-                                <div class="crs-content__desc">{!! $currentMovie->content !!}
+                                <div class="crs-content__desc">{!! $movie->content !!}
                                 </div>
                                 <div class="sc-a4176019-0 gHWgi option-button">
                                     <div class="sc-88e580be-0 gUElsb">

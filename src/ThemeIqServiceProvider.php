@@ -36,8 +36,8 @@ class ThemeIqServiceProvider extends ServiceProvider
                         'type' => 'code',
                         'hint' => 'display_label|find_by_field|value|limit|sort_by_field|sort_algo',
                         'value' => <<<EOT
-                        Phim đề cử|is_recommended|1|10|view_week|desc
                         Phim HOT|is_copyright|0|10|view_week|desc
+                        Phim đề cử|is_recommended|1|10|view_week|desc
                         Phim ngẫu nhiên|random|random|10|view_week|desc
                         EOT,
                         'attributes' => [
@@ -88,9 +88,6 @@ class ThemeIqServiceProvider extends ServiceProvider
                         'type' => 'code',
                         'hint' => 'Label|relation|find_by_field|value|sort_by_field|sort_algo|limit|show_template (top_thumb|top_trending)',
                         'value' => <<<EOT
-                        Trending|trending|||||6|top_trending
-                        Top phim lẻ||type|single|view_week|desc|6|top_thumb
-                        Top phim bộ||type|series|view_week|desc|6|top_thumb
                         Bảng xếp hạng||is_copyright|0|view_week|desc|6|top_thumb
                         EOT,
                         'attributes' => [
@@ -138,8 +135,72 @@ class ThemeIqServiceProvider extends ServiceProvider
                         'label' => 'Footer',
                         'type' => 'code',
                         'value' => <<<EOT
-                        <div class="myui-foot clearfix"><div class="container min"><div class="row"><div class="col-12"><h1 style="font-size:100%"><span class="text-logo"><b>DONGCHILL.CO</b></span> Nơi cập nhật những bộ phim mới hot nhất hiện nay.</h1><p>DONGCHILL.CO nơi cung cấp cho người dùng những bộ phim chất lượng cao từ các quốc gia trên thế giới, bao gồm Hàn Quốc, Trung Quốc, Thái Lan và Nhật Bẚn.</p><p>DONGCHILL.CO cung cấp đa dạng thể loại phim, từ tình cẚm, hành động, giẚ tưởng đến kinh dị...</p><p>Ngoài ra, người dùng có thể dễ dàng tìm kiếm phim theo từng quốc gia, giúp cho việc tìm kiếm giẚi trí hoàn toàn dễ dàng.</p><p>Với những bộ phim chất lượng cao và đa dạng sự lựa chọn của website, các tín đồ film sẽ không thể bỏ qua trang web vô cùng hữu ích này.</p></div><!--div class="col-12"><ul><li>Liên hệ lên hệ quảng cáo telegram: </li></ul></div--></div></div></div>
-                        <div class="myui-foot clearfix"><div class="row"><div class="col-pd text-center"><p class="margin-0">© 2023 Copyright <a href="https://dongchill.co"><b>DONGCHILL.CO</b></a>. All Rights reserved.</p></div></div></div>
+                        <div class="footer" id="footer">
+                            <div class="container">
+                                <div class="row">
+                                    <ul class="footer__list">
+                                        <li class="">
+                                            <h3 class="footer__title">Giới thiệu về chúng tôi</h3>
+                                            <ul>
+                                                <li class="footer__item">
+                                                    <a href="/">Thông tin công ty</a>
+                                                </li>
+                                                <li class="footer__item">
+                                                    <a href="">Giới thiệu dịch vụ sản phẩm</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <h3 class="footer__title">Hợp tác</h3>
+                                            <ul>
+                                                <li class="footer__item"><a href="/">Đăng quảng cáo</a></li>
+                                                <li class="footer__item"><a href="#">Thông tin</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <h3 class="footer__title">Hỗ trợ giúp đỡ</h3>
+                                            <ul>
+                                                <li class="footer__item"><a href="#">Liên hệ</a></li>
+                                                <li class="footer__item"><a href="#">Báo cáo</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <h3 class="footer__title">Điều khoản</h3>
+                                            <ul>
+                                                <li class="footer__item"><a href="#">Điều khoản chung</a></li>
+                                                <li class="footer__item"><a href="#">Chính sách riêng tư</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="sc-d898c62d-0 hixEMX">
+                                <div class="line"></div>
+                                <div class="sc-c8e7e327-0 dznphQ">
+                                    <div class="backTop-msg" style="display: none;">
+                                        <div class="msg-container">Về đầu trang</div>
+                                        <div class="msg-arrow"></div>
+                                    </div>
+                                    <div class="backTop-wrapper" role="button">
+                                        <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <g id="PCW-侧导航-下载app+回顶部" transform="translate(-1832.000000, -1470.000000)" fill="#1CC749" fill-rule="nonzero">
+                                                    <g id="侧导航" transform="translate(1816.000000, 1389.000000)">
+                                                        <g id="ic_share-copy-2" transform="translate(16.000000, 81.000000)">
+                                                            <path
+                                                                d="M24.1137085,11.8137085 L24.1137085,13.5565656 C24.1137403,13.832708 23.8898827,14.0565656 23.6137403,14.0565656 C23.6137297,14.0565656 23.6137191,14.0565656 23.6137085,14.0565338 L10.8557226,14.0557226 L10.8557226,14.0557226 L10.8565338,26.8137085 C10.8565832,27.0898509 10.6327398,27.3137227 10.3565974,27.3137403 C10.3565868,27.3137403 10.3565762,27.3137403 10.3565656,27.3137085 L8.6137085,27.3137085 C8.33756612,27.3137085 8.1137085,27.0898509 8.1137085,26.8137085 L8.1137085,13.5994228 L8.1137085,13.5994228 C8.1137085,12.3875522 9.05682707,11.3959589 10.2491364,11.3185704 L10.3994228,11.3137085 L23.6137085,11.3137085 C23.8898509,11.3137085 24.1137085,11.5375661 24.1137085,11.8137085 Z"
+                                                                id="路径"
+                                                                transform="translate(16.113708, 19.313708) rotate(-315.000000) translate(-16.113708, -19.313708) ">
+                                                            </path>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         EOT,
                         'tab' => 'Custom HTML'
                     ],

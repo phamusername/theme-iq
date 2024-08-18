@@ -1069,3 +1069,39 @@
     padding: 3px 4px;
     margin-right: 10px;
   }
+  @media screen and (max-width: 1679px) {
+    .dznphQ {
+        width: 44px;
+        height: 44px;
+    }
+}
+
+.dznphQ {
+    right: 10px;
+    position: fixed;
+    bottom: 80px;
+    width: 40px;
+    height: 40px;
+    background: rgb(49, 52, 57);
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-radius: 50%;
+    z-index: 9999;
+}
+
+#footer .backTop-wrapper {
+    display: block;
+}
+
+.backTop-wrapper {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .footer__list {
+        padding: 5px
+    }
+}

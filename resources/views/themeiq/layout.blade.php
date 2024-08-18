@@ -25,6 +25,30 @@
     <!-- Page style -->
     <link rel='stylesheet' href='/themes/iq/css/dashboard/index.css?ver=1.0.1' type='text/css' />
     <link rel='stylesheet' href='/themes/iq/css/list.css?ver=1.0.1' type='text/css' />
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const backTopWrapper = document.querySelector('.backTop-wrapper');
+            const dznphQ = document.querySelector('.dznphQ');
+
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset === 0) {
+                    backTopWrapper.style.display = 'none';
+                    dznphQ.style.display = 'none';
+                } else {
+                    backTopWrapper.style.display = 'block';
+                    dznphQ.style.display = 'flex';
+                }
+            });
+
+            backTopWrapper.addEventListener('click', function() {
+                console.log('Back to top button clicked'); // Log message
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // Smooth scroll effect
+                });
+            });
+        });
+    </script>
 @endpush
 
 @section('body')
@@ -38,91 +62,42 @@
 
 @section('footer')
     <style>
-        @media screen and (min-width: 768px) and (max-width: 1679px) {
-            .dJvLcv {
-                padding-bottom: 30px;
+        @media screen and (max-width: 1679px) {
+            .dznphQ {
+                width: 44px;
+                height: 44px;
             }
         }
 
-        .dJvLcv {
-            z-index: auto;
-            width: 100%;
-            top: 0px;
-            vertical-align: middle;
-            background: rgb(10, 12, 15);
-            border-top: 1px solid rgb(45, 47, 52);
-            transition: background-color 0.5s linear;
-            color: rgb(221, 221, 221);
-            font-size: 14px;
-            text-align: center;
-            position: relative;
-            padding-bottom: 40px;
+        .dznphQ {
+            right: 10px;
+            position: fixed;
+            bottom: 80px;
+            width: 40px;
+            height: 40px;
+            background: rgb(49, 52, 57);
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            border-radius: 50%;
+            z-index: 9999;
         }
-        .dJvLcv .footer-inner {
-    width: 904px;
-    height: 100%;
-    margin: 0px auto;
-    position: relative;
-}
-.dJvLcv .multiport-show .multiport-title {
-    font-size: 20px;
-    line-height: 20px;
-    color: rgb(255, 255, 255);
-    text-align: center;
-    font-weight: 700;
-    margin-top: 32px;
-}
-.dJvLcv .multiport-show .multiport-desc {
-    font-size: 12px;
-    color: rgb(169, 169, 172);
-    font-weight: 400;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    height: 12px;
-    line-height: 24px;
-    margin-top: 16px;
-}
-.dJvLcv .footer-donwload-img {
-    width: 48px;
-}
-.dJvLcv .multiport-show .multiport-content {
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    margin: 32px auto;
-}
-@media screen and (min-width: 1024px) and (max-width: 1679px) {
-    .dJvLcv .multiport-show .multiport-content .multiport-pca {
-        margin-right: 100px;
-    }
-}
-.dJvLcv .multiport-show .multiport-content .multiport-pca {
-    position: relative;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    margin-right: 120px;
-}
-.dJvLcv .multiport-show .multiport-content > div {
-    background: rgb(35, 37, 43);
-    border-radius: 4px;
-    min-width: 132px;
-    padding: 8px 12px;
-    box-sizing: border-box;
-    cursor: pointer;
-}
-.dJvLcv .multiport-show .multiport-content .multiport-pca svg {
-    width: 20px;
-    height: 20px;
-}
-.dJvLcv .multiport-show .multiport-content .multiport-pca > span {
-    margin-left: 4px;
-}
+
+        #footer .backTop-wrapper {
+            display: block;
+        }
+
+        .backTop-wrapper {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .footer__list {
+                padding: 5px
+            }
+        }
     </style>
     @if (get_theme_option('ads_catfish'))
         <div id="catfish" style="width: 100%;position:fixed;bottom:0;left:0;z-index:222" class="mp-adz">
@@ -138,32 +113,13 @@
     @endif
     </script>
 
+
     {!! get_theme_option('footer') !!}
     <script src='/themes/iq/js/jquery.js?ver=3.0.0'></script>
     <script src='/themes/iq/js/splide.min.js?ver=1.0.1'></script>
     <script src='/themes/iq/plugins/bootstrap/js/bootstrap.bundle.min.js?ver=1.0.1'></script>
     <script src='/themes/iq/js/functions.js?ver=1.0.1'></script>
     <script src='/themes/iq/js/main.js?ver=1.0.1'></script>
-    {{-- <script type="text/javascript" id='funciones_public_sol-js-extra'>
-        var toroflixPublic = {
-            "url": "/",
-            "nonce": "7a0fde296e",
-            "trailer": "",
-            "noItemsAvailable": "No entries found",
-            "selectAll": "Select all",
-            "selectNone": "Select none",
-            "searchplaceholder": "Click here to search",
-            "loadingData": "Still loading data...",
-            "viewmore": "View more",
-            "id": "",
-            "type": "",
-            "report_text_reportForm": "Report Form",
-            "report_text_message": "Message",
-            "report_text_send": "SEND",
-            "report_text_has_send": "the report has been sent",
-            "playerAutomaticSlider": "1"
-        };
-    </script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <!-- Page script -->
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
