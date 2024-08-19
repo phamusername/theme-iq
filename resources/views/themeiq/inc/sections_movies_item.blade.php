@@ -11,7 +11,7 @@
             "firm_cate": "{!! count($movie->categories) ? $movie->categories->first()['name'] : 'Đang cập nhật' !!}"
         }'>
             <div class="splide__img-wrap">
-                <img style="display: block; width: 100%, height: auto" src="{{ $movie->getThumbUrl() }}" alt="Slider" class="splide__img">
+                <img style="display: block; width: 100%; height: auto" src="{{ $movie->getThumbUrl() }}" alt="Slider" class="splide__img">
                 <div class="episodes">{{ $movie->episode_current }}</div>
             </div>
             <div class="splide__item-title">{{ $movie->name }}</div>
