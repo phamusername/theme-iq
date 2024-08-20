@@ -4,7 +4,7 @@
             "rate": "{{ $movie->getRatingStar() }}",
             "type": "@if ($movie->type == 'single') Phim lẻ @else Phim Bộ @endif",
             "year": "{{ $movie->publish_year }}",
-            "desc": "{{ $movie->name }} - {{ $movie->origin_name }} ({{ $movie->publish_year }}) {{ $movie->content }}",
+            "desc": "{{ $movie->name }} - {{ $movie->origin_name }} ({{ $movie->publish_year }})",
             "img_url": "{{ $movie->getPosterUrl() }}",
             "title": "{{ $movie->name }}",
             "linkF": "{{ $movie->getUrl() }}",
