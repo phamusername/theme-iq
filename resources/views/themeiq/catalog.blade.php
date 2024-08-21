@@ -23,10 +23,11 @@
                 </div>
 
             </section>
-            <div class="myui-panel myui-panel-list mt-2 clearfix" style="margin-right: 30px">
-                @include('themes::themeiq.inc.catalog_filter')
-            </div>
+            
             <section class="list-item">
+                <div class="myui-panel myui-panel-list mt-2 clearfix" style="margin-bottom: 10px; width: 100%">
+                    @include('themes::themeiq.inc.catalog_filter')
+                </div>
                 @foreach ($data as $key => $movie)
                     @php
                         $xClass = 'item';
@@ -47,8 +48,8 @@
 @endsection
 <style>
     .myui-panel {
-        padding-left: 60px;
-        padding-right: 60px;
+        /* padding-left: 60px;
+        padding-right: 60px; */
         position: relative;
     }
 
@@ -96,8 +97,8 @@
         font-size: 14px;
     }
 
-    .filter-box .row>div {
+    /* .filter-box .row>div {
         margin-bottom: 10px;
         margin-right: 10px
-    }
+    } */
 </style>

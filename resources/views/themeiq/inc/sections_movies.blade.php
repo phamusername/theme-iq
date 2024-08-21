@@ -16,12 +16,6 @@
                 <div class="splide__track">
                     <ul class="splide__list">
                         @foreach ($item['data'] as $key => $movie)
-                            {{-- @php
-                                $xClass = 'item';
-                                if ($key === 0 || $key % 4 === 0) {
-                                    $xClass .= ' no-margin-left';
-                                }
-                            @endphp --}}
                             @include('themes::themeiq.inc.sections_movies_item')
                         @endforeach
                     </ul>

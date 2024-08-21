@@ -52,3 +52,23 @@
         </div>
     </div>
 </form>
+<style>
+    .filter-box .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .filter-box .col-xs-6 {
+        width: 50%; /* Default to mobile width */
+    }
+    @media (min-width: 768px) {
+        .filter-box .col-lg-4 {
+            padding-right: 10px;
+            padding-top: 10px;
+            width: calc(33.33% - 10px);
+        }
+        .filter-box .col-lg-4:last-child {
+            margin-right: 0; /* Remove margin for last column */
+        }
+    }
+</style>
